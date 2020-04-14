@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchInput from '../../components/SearchInput/SearchInput';
 
 class Home extends Component {
   constructor(props) {
@@ -8,8 +9,11 @@ class Home extends Component {
 
   render() { 
     return ( 
+      <>
       <h1>HOME PAGE</h1>
-    );
+      <SearchInput />
+      </>
+    )
   }
 }
  

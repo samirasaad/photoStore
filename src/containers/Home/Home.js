@@ -11,8 +11,8 @@ class Home extends Component {
     }
   }
   componentDidMount = () =>{
-    const {searchRequest} =this.props;
-    searchRequest({query:'cars'})
+    // const {searchRequest} =this.props;
+    // searchRequest({query:'cars'})
   }
     handleChange = (e) =>{
     console.log(e.target.value);
@@ -22,6 +22,9 @@ class Home extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
+    const {searchRequest} =this.props;
+    searchRequest({query:this.state.searchTerm})
+
   }
   render() {
     return (

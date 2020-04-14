@@ -6,7 +6,6 @@ export function* search({payload}) {
   debugger
   try {
     const response = yield call(API.searchForPhotos,payload);
-    console.log(payload)
     yield put(searchRecieve(response));
     console.log(response)
   } catch (err) {

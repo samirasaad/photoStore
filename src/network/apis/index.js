@@ -4,9 +4,6 @@ import { requestHandler, successHandler, errorHandler } from "../interceptors";
 
 export const axiosInstance = axios.create({
   baseURL:baseUrl,
-  // params: {
-  //   api_key: "#API_KEY"
-  // }
 });
 
 // Handle request process

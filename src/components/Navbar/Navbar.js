@@ -27,7 +27,6 @@ const Navbar = ({ lang, setCurrentLang }) => {
   return (
     <div>
       {renderLangSwitcher(message.langBtn, lang)}
-      <h1>{message.home}</h1>
     </div>
   )
 

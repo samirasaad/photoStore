@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import SearchInput from '../../components/SearchInput/SearchInput';
+import {searchRequest} from './../../store/actions/search';
 
 class Home extends Component {
   constructor(props) {
@@ -8,7 +10,11 @@ class Home extends Component {
       searchTerm: ''
     }
   }
-  handleChange = (e) =>{
+  componentDidMount = () =>{
+    const {searchRequest} =this.props;
+    searchRequest({query:'cars'})
+  }
+    handleChange = (e) =>{
     console.log(e.target.value);
     this.setState({
       searchTerm:e.target.value
@@ -29,4 +35,8 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = ({locale:{lang}}) =>({
+lang:lang
+})
+
+export default connect(mapStateToProps,{searchRequest})(Home);

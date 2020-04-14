@@ -4,7 +4,7 @@
 
 export const requestHandler = request => {
   if (isHandlerEnabled(request)) {
-    // DO SOMETHING
+    request.headers["Authorization"] = 'Client-ID PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0'
   }
   return request;
 };

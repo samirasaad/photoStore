@@ -1,7 +1,7 @@
-import { takeEvery } from "redux-saga/effects";
-import * as types from "../types";
-import { fetchSaga } from "./SagaExample";
+import { takeLatest } from "redux-saga/effects";
+import * as types from "../types/search";
+import { search } from "./search";
 
 export function* watchAll() {
-  yield takeEvery(types.FETCH_DATA_REQUEST, fetchSaga);
+  yield takeLatest(types.SEARCH_PHOTOS_REQUEST, search);
 }

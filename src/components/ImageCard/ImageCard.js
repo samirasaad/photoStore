@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ImageCard = (props) => {
   const { thumb, alt_description, liked_by_user, download, download_location,
-    profile_image, name, location } = props;
+    profile_image, name, location, handleModalState } = props;
   const classes = useStyles();
 
   return (
@@ -51,6 +51,7 @@ const ImageCard = (props) => {
           className={classes.media}
           image={thumb}
           title={alt_description}
+          onClick={handleModalState}
         />
         <CardActions className='justufy-content-between'>
           <IconButton aria-label='like this photo'>

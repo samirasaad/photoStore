@@ -2,26 +2,48 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ImageCard from '../../components/ImageCard/ImageCard';
 import './ImagesList.scss';
+import ImageModal from '../../components/ImageModal/ImageModal';
 class ImagesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            isOpen: false,
+            imgObj:{
+                imgId: null,
+                img_description:'',
+                img_alt_description:''
+            }
         }
     }
     componentDidMount = () => {
 
     }
 
+    handleModalState = (imgId) => {
+        const { isOpen } = this.state;
+        !isOpen ?
+            this.setState({
+                isOpen: true,
+                imgObj:{
+                    ...this.state.imgObj,
+                    imgId
+                }
+            }) :
+            this.setState({
+                isOpen: false,
+                imgId: null
+            })
+    }
 
     render() {
         const { photosList } = this.props;
+        const { isOpen } = this.state;
         return (
             <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid '>
                 {
-                    photosList.map(({ urls: { raw, full, regular, small, thumb },
+                    photosList.map(({ id, urls: { raw, full, regular, small, thumb },
                         links: { self, html, download, download_location, liked_by_user },
-                        alt_description,user:{profile_image,name, location} }, index) => {
+                        alt_description, user: { profile_image, name, location } }, index) => {
                         return (
                             <>
                                 {/* <div className='position-relative'>
@@ -39,6 +61,7 @@ class ImagesList extends Component {
                                     profile_image={profile_image.small}
                                     name={name}
                                     location={location}
+                                    handleModalState={() => this.handleModalState(id)}
                                 />
                                 {/* <img src={raw} />
                                  <img src={full} />*/}
@@ -53,6 +76,8 @@ class ImagesList extends Component {
                         )
                     })
                 }
+                <ImageModal isOpen={isOpen}
+                    handleModalState={this.handleModalState} />
             </section>
         )
     }

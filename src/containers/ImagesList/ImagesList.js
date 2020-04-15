@@ -17,14 +17,20 @@ class ImagesList extends Component {
     render() {
         const { photosList } = this.props;
         return (
-            <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid'>
+            <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid '>
                 {
                     photosList.map(({ urls: { raw, full, regular, small, thumb },
                         links: { self, html, download, download_location, liked_by_user },
                         alt_description }, index) => {
                         return (
                             <>
+                                {/* <div className='position-relative'>
+                                    <img className='m-2 img ' src={thumb} />
+                                </div>
+                                <div className='position-absolute'>test</div> */}
+                                {/* </div> */}
                                 <ImageCard
+                                    key={index}
                                     thumb={thumb}
                                     alt_description={alt_description}
                                     liked_by_user={liked_by_user}

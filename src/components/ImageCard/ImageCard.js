@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 10
   },
   media: {
-    height: 0,
+    height: 16+'em',
     paddingTop: '56.25%', // 16:9
   },
   avatar: {

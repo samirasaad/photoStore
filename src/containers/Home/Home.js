@@ -11,14 +11,12 @@ class Home extends Component {
     this.state = {
       searchTerm: '',
       photosList: [],
-      activePage: 1
+      activePage: 1,
+      photosPerPage:25
     }
   }
   componentDidMount = () => {
-    // const {searchRequest} =this.props;
-    // searchRequest({query:'cars'})
   }
-
 
   componentDidUpdate = (prevProps) => {
     const { results } = this.props;
@@ -28,50 +26,55 @@ class Home extends Component {
       })
     }
   }
+
   handleChange = (e) => {
     this.setState({
       searchTerm: e.target.value
     })
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { searchRequest } = this.props;
-    searchRequest({ query: this.state.searchTerm, page: 1, per_page:25})
-
+    const {activePage,photosPerPage } =this.state;
+    searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
   }
 
-  handlePageChange = (pageNumber) =>{
-    console.log(`active page is ${pageNumber}`);
-    this.setState({activePage: pageNumber});
+  handlePageChange = (pageNumber) => {
+    const { searchRequest } = this.props;
+    const { activePage, photosPerPage } = this.state;
+    this.setState({ activePage: pageNumber }, () => {
+      searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
+    })
   }
 
   render() {
-    const {photosList, activePage} = this.state;
-    const {total} = this.props;
+    const { photosList, activePage, photosPerPage } = this.state;
+    const { total } = this.props;
     return (
       <>
         <h1>Serach for a photo</h1>
         <SearchInput handleChange={this.handleChange}
           handleSubmit={this.handleSubmit} />
-       {photosList.length > 0 &&
-       <>
-        <ImagesList photosList={photosList}/>
-        <div >
-        <Pagination
-          className='justify-content-center'
-          itemClass="page-item"
-          linkClass="page-link"
-          activePage={this.state.activePage}
-          itemsCountPerPage={25}
-          totalItemsCount={total}
-          pageRangeDisplayed={5}
-          onChange={this.handlePageChange}
-          prevPageText='Prev'
-          nextPageText='Next'
-        />
-      </div>
-      </>
-       }
+        {photosList.length > 0 &&
+          <>
+            <ImagesList photosList={photosList} />
+            <div className='my-2'>
+              <Pagination
+                className='justify-content-center'
+                itemClass="page-item"
+                linkClass="page-link"
+                activePage={activePage}
+                itemsCountPerPage={photosPerPage}
+                totalItemsCount={total}
+                pageRangeDisplayed={5}
+                onChange={this.handlePageChange}
+                prevPageText='Prev'
+                nextPageText='Next'
+              />
+            </div>
+          </>
+        }
       </>
     )
   }

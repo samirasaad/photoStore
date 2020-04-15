@@ -12,8 +12,8 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 22+'em',
-    margin:10
+    width: 22 + 'em',
+    margin: 10
   },
   media: {
     height: 0,
@@ -25,17 +25,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ImageCard = (props) => {
-  const {thumb, alt_description, liked_by_user, download, download_location }= props;
+  const { thumb, alt_description, liked_by_user, download, download_location } = props;
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardHeader
-        // avatar={
-        //   <Avatar aria-label="recipe" className={classes.avatar}>
-        //     R
-        //   </Avatar>
-        // }
+      // avatar={
+      //   <Avatar aria-label="recipe" className={classes.avatar}>
+      //     R
+      //   </Avatar>
+      // }
       />
       <CardMedia
         className={classes.media}
@@ -44,10 +44,10 @@ const ImageCard = (props) => {
       />
       <CardActions disableSpacing>
         {/* <IconButton aria-label='like this photo'> */}
-          {/* <FavoriteIcon /> */}
+        {/* <FavoriteIcon /> */}
         {/* </IconButton> */}
         {/* <IconButton aria-label="share this photo"> */}
-          {/* <ShareIcon /> */}
+        {/* <ShareIcon /> */}
         {/* </IconButton> */}
       </CardActions>
     </Card>

@@ -1,6 +1,21 @@
+@import './variables';
 .rtl {
     text-align: right;
 }
 button:focus{
     outline:none;
+}
+
+.pagination{
+    justify-content:center;
+    .page-link{
+        color:$primaryColor;
+    }
+    .page-item.active{
+        color:white;
+        .page-link{
+            background-color:$primaryColor;
+            border-color:$primaryColor;
+        }
+    }
 }

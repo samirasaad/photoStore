@@ -34,7 +34,7 @@ class Home extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { searchRequest } = this.props;
-    searchRequest({ query: this.state.searchTerm, page: 1, per_page:5})
+    searchRequest({ query: this.state.searchTerm, page: 1, per_page:25})
 
   }
   render() {

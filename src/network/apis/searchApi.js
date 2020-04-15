@@ -1,7 +1,6 @@
 import { axiosInstance } from './index';
 let handlerEnabled = true;
 const searchForPhotos = async params => {
-    debugger;
     return await axiosInstance.get(`https://api.unsplash.com/search/photos`, {
         params,
          headers: {

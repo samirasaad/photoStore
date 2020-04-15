@@ -1,13 +1,17 @@
 import React from 'react';
 import InputField from './../Controls/TextField/TextField';
 
-const  SearchInput = ({handleChange}) =>{
+const SearchInput = ({ handleChange,handleSubmit }) => {
     return (
-        <InputField  label='name'
-                     color='secondary'
-                     size='medium'
-                     handleChange={handleChange}
-                     />
+        <>
+            <form onSubmit={handleSubmit}>
+                <InputField label='name'
+                    color='secondary'
+                    size='medium'
+                    handleChange={handleChange}
+                />
+            </form>
+        </>
     )
 }
 

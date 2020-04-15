@@ -21,7 +21,7 @@ class ImagesList extends Component {
                 {
                     photosList.map(({ urls: { raw, full, regular, small, thumb },
                         links: { self, html, download, download_location, liked_by_user },
-                        alt_description }, index) => {
+                        alt_description,user:{profile_image,name, location} }, index) => {
                         return (
                             <>
                                 {/* <div className='position-relative'>
@@ -36,6 +36,9 @@ class ImagesList extends Component {
                                     liked_by_user={liked_by_user}
                                     download={download}
                                     download_location={download_location}
+                                    profile_image={profile_image.small}
+                                    name={name}
+                                    location={location}
                                 />
                                 {/* <img src={raw} />
                                  <img src={full} />*/}

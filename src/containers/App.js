@@ -11,6 +11,7 @@ import './App.scss';
 class App extends Component {
   render() {
     const { lang } = this.props;
+    localStorage.setItem('lang','en')
     return (
       <IntlProvider
         locale={lang}

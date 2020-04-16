@@ -1,4 +1,4 @@
-import * as types from '../types/search';
+import * as types from '../types';
 
 export const searchRequest = payload => ({
     type: types.SEARCH_PHOTOS_REQUEST,

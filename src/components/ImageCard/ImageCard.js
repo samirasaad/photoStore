@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ImageCard = (props) => {
   const { thumb, alt_description, liked_by_user, download, download_location,
-    profile_image, name, location, handleModalState } = props;
+    profile_image, name, location, handleModalState ,downloadImage } = props;
   const classes = useStyles();
 
   return (
@@ -57,8 +57,10 @@ const ImageCard = (props) => {
           <IconButton aria-label='like this photo'>
             <FavoriteIcon />
           </IconButton>
-          <IconButton aria-label="share this photo">
+          <IconButton aria-label="share this photo" onClick={downloadImage}>
+            {/* <a href={thumb} download>  */}
             <ShareIcon />
+            {/* </a> */}
           </IconButton>
         </CardActions>
       </Card>

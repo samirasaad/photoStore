@@ -41,6 +41,7 @@ class ImagesList extends Component {
         const {downloadApPhotoRequest} =this.props;
         console.log(id);
         downloadApPhotoRequest({id})
+        
     }
     render() {
         const { photosList } = this.props;

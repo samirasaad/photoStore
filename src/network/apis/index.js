@@ -1,5 +1,5 @@
 import axios from "axios";
-import baseUrl from './../../utils/Constants';
+import {baseUrl} from './../../utils/Constants';
 import { requestHandler, successHandler, errorHandler } from "../interceptors";
 
 export const axiosInstance = axios.create({

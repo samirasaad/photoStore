@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 16 + 'em',
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%'
   },
   avatar: {
     width: 'auto'
@@ -26,12 +26,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ImageCard = (props) => {
-  const { thumb, alt_description, liked_by_user, download, download_location,
-    profile_image, name, location, handleModalState ,downloadImage,forceDownload } = props;
+  const { regular, alt_description, likes, profile_image, name, location, handleModalState 
+    ,downloadImage,forceDownload } = props;
   const classes = useStyles();
-
   return (
-    <div className='card-wrapper'>
       <Card className={classes.root}>
         <CardHeader
           avatar={
@@ -49,22 +47,22 @@ const ImageCard = (props) => {
         />
         <CardMedia
           className={classes.media}
-          image={thumb}
+          image={regular}
           title={alt_description}
           onClick={handleModalState}
         />
-        <CardActions className='justufy-content-between'>
-          <IconButton aria-label='like this photo'>
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share this photo"onClick={forceDownload} >
+        <CardActions className='my-2'>
+          {/* <IconButton aria-label='like this photo'> */}
+            <FavoriteIcon color='secondary'/>
+            <span className='no-of-likes'>{likes}</span>
+          {/* </IconButton> */}
+          {/* <IconButton aria-label="share this photo"onClick={forceDownload} > */}
             {/* <a href={thumb} download='img'>  */}
-            <ShareIcon />
+            {/* <ShareIcon /> */}
             {/* </a> */}
-          </IconButton>
+          {/* </IconButton> */}
         </CardActions>
       </Card>
-    </div>
   );
 }
 

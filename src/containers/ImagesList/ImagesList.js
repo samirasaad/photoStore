@@ -73,7 +73,7 @@ class ImagesList extends Component {
         return (
             <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid '>
                 {
-                    photosList.map(({ id, urls: { raw, full, regular, small, thumb },
+                    photosList.map(({ id, urls: { raw, full, regular, small, thumb },likes,
                         links: { self, html, download, download_location, liked_by_user },
                         description,
                         alt_description, user: { profile_image, name, location } }, index) => {
@@ -84,8 +84,10 @@ class ImagesList extends Component {
                                 </div>
                                 <div className='position-absolute'>test</div> */}
                                 {/* </div> */}
+                       <div className='card-wrapper d-flex justify-content-center'>
                                 <ImageCard
-                                    thumb={regular}
+                                    likes={likes}
+                                    regular={regular}
                                     alt_description={alt_description}
                                     liked_by_user={liked_by_user}
                                     download={download}
@@ -97,6 +99,7 @@ class ImagesList extends Component {
                                     forceDownload={()=>this.forceDownload(download)}
                                     handleModalState={() => this.handleModalState(id, description, small)}
                                 />
+                                </div>
                                 {/* <img src={raw} />
                                  <img src={full} />*/}
                                 {/* <img src={regular} /> */}

@@ -22,7 +22,7 @@ function Theme() {
             main : '#49aca8'
         },
         secondary : {
-            main : '#343a40'
+            main : '#acacac'
         }
       }
     }

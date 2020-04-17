@@ -1,4 +1,6 @@
+@import './../../scss/variables';
 .card-wrapper{
+    flex: 1 1 0px;
     .MuiAvatar-img{
         object-fit: contain;
     }
@@ -9,7 +11,7 @@
     .MuiCardMedia-root{
         cursor: pointer;
     }
-    .MuiCardActions-root{
-        justify-content: space-between;
+    .no-of-likes{
+        color:$secondaryColor;
     }
 }

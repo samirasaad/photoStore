@@ -37,11 +37,35 @@ class ImagesList extends Component {
                 imgId: null
             })
     }
+   
+     forceDownload=(url)=>{
+         console.log(url);
+        //  debugger;
+        // var url = link.getAttribute("data-href");
+        // var fileName = link.getAttribute("download");
+        // link.innerText = "Working...";
+        // var xhr = new XMLHttpRequest();
+        // xhr.open("GET", url, true);
+        // xhr.responseType = "blob";
+        // xhr.onload =()=>{
+        //     var urlCreator = window.URL || window.webkitURL;
+        //     var imageUrl = urlCreator.createObjectURL(this.response);
+        //     var tag = document.createElement('a');
+        //     tag.href = imageUrl;
+        //     // tag.download = fileName;
+        //     document.body.appendChild(tag);
+        //     tag.click();
+        //     document.body.removeChild(tag);
+        //     // link.innerText="Download Image";
+        // }
+        // xhr.send();
+    }
+
     downloadImage= (id)=>{
         const {downloadApPhotoRequest} =this.props;
         console.log(id);
-        downloadApPhotoRequest({id})
-        
+        // downloadApPhotoRequest({id})
+        // this.forceDownload()
     }
     render() {
         const { photosList } = this.props;
@@ -49,7 +73,6 @@ class ImagesList extends Component {
         return (
             <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid '>
                 {
-
                     photosList.map(({ id, urls: { raw, full, regular, small, thumb },
                         links: { self, html, download, download_location, liked_by_user },
                         description,
@@ -62,7 +85,7 @@ class ImagesList extends Component {
                                 <div className='position-absolute'>test</div> */}
                                 {/* </div> */}
                                 <ImageCard
-                                    thumb={thumb}
+                                    thumb={regular}
                                     alt_description={alt_description}
                                     liked_by_user={liked_by_user}
                                     download={download}
@@ -71,6 +94,7 @@ class ImagesList extends Component {
                                     name={name}
                                     location={location}
                                     downloadImage={()=>this.downloadImage(id)}
+                                    forceDownload={()=>this.forceDownload(download)}
                                     handleModalState={() => this.handleModalState(id, description, small)}
                                 />
                                 {/* <img src={raw} />

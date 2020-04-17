@@ -9,13 +9,13 @@ const downloadAPhoto = async ({id}) => {
     //     handlerEnabled
     // }
     // );
-    return await axiosInstance.put(`/photos/${id}`, {
-        headers: {
-            Authorization: 'Client-ID PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0'
-        },
-        handlerEnabled
-    }
-    );
+    // return await axiosInstance.put(`/photos/${id}`, {
+    //     headers: {
+    //         Authorization: 'Client-ID PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0'
+    //     },
+    //     handlerEnabled
+    // }
+    // );
 };
 
 export default {

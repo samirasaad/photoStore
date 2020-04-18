@@ -4,10 +4,15 @@ import ImageCard from '../../components/ImageCard/ImageCard';
 import './ImagesList.scss';
 import ImageModal from '../../components/ImageModal/ImageModal';
 import {downloadApPhotoRequest} from './../../store/actions/download';
+import Pagination from "react-js-pagination";
+
 class ImagesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            photosList: [],
+            activePage: 1,
+            photosPerPage:20,
             isOpen: false,
             imgObj: {
                 imgId: null,
@@ -19,6 +24,22 @@ class ImagesList extends Component {
     componentDidMount = () => {
 
     }
+    componentDidUpdate = (prevProps) => {
+        const { results } = this.props;
+        if (prevProps.results !== this.props.results) {
+          this.setState({
+            photosList: results
+          })
+        }
+      }
+
+      handlePageChange = (pageNumber) => {
+        const { searchRequest } = this.props;
+        const { activePage, photosPerPage } = this.state;
+        this.setState({ activePage: pageNumber }, () => {
+          searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
+        })
+      }
 
     handleModalState = (imgId, img_description, imgUrl) => {
         const { isOpen } = this.state;
@@ -68,11 +89,13 @@ class ImagesList extends Component {
         // this.forceDownload()
     }
     render() {
-        const { photosList } = this.props;
+        const { photosList, activePage, photosPerPage } = this.state;
+    const { total } = this.props;
+    // const { photosList } = this.props;
         const { isOpen, imgObj } = this.state;
         return (
-            <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid '>
-                {
+            <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid my-4 '>
+                { photosList.length > 0 &&
                     photosList.map(({ id, urls: { raw, full, regular, small, thumb },likes,
                         links: { self, html, download, download_location, liked_by_user },
                         description,
@@ -100,6 +123,7 @@ class ImagesList extends Component {
                                     handleModalState={() => this.handleModalState(id, description, small)}
                                 />
                                 </div>
+                           
                                 {/* <img src={raw} />
                                  <img src={full} />*/}
                                 {/* <img src={regular} /> */}
@@ -111,8 +135,25 @@ class ImagesList extends Component {
                                 {/* <img src={download_location} /> */}
                             </React.Fragment>
                         )
+                        
                     })
                 }
+                  {photosList.length > 0 &&
+                         <div className='my-4 w-100'>
+                         <Pagination
+                           className='justify-content-center'
+                           itemClass="page-item"
+                           linkClass="page-link"
+                           activePage={activePage}
+                           itemsCountPerPage={photosPerPage}
+                           totalItemsCount={total}
+                           pageRangeDisplayed={5}
+                           onChange={this.handlePageChange}
+                           prevPageText='Prev'
+                           nextPageText='Next'
+                         />
+                       </div>
+                  }
                 <ImageModal isOpen={isOpen}
                     maxWidth='xl'
                     fullWidth={true}
@@ -126,8 +167,11 @@ class ImagesList extends Component {
     }
 }
 
-const mapStateToProps = ({ locale: { lang } }) => ({
-    lang: lang
+const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pages } }) => ({
+        lang: lang,
+        results,
+        total,
+        total_pages,
 })
 
 export default connect(mapStateToProps, {downloadApPhotoRequest})(ImagesList);

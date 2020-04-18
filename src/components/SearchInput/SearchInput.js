@@ -11,7 +11,7 @@ const SearchInput = ({ handleChange,handleSubmit }) => {
                   onChange={handleChange}
                   />
                  <span className='position-absolute search-icon'>
-                     <YoutubeSearchedForIcon color='secondary'/>
+                     <YoutubeSearchedForIcon />
                  </span>
                 </div>
             </form>

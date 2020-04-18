@@ -6,9 +6,18 @@
     border-radius: 1em;
     border:1px solid #dfdfdf;
     box-shadow: 0px 1px 12px 1px #e8e8e8;
+    background-color:$primaryColor;
+    color:white;
     }
     .search-icon{
         top:1em;
         left:16%;
+        svg{
+            fill:white !important;
+        }
     }
+    ::placeholder{
+        color:white
+    }
+    
 }

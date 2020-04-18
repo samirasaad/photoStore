@@ -4,6 +4,8 @@ import ImageCard from '../../components/ImageCard/ImageCard';
 import './ImagesList.scss';
 import ImageModal from '../../components/ImageModal/ImageModal';
 import {downloadApPhotoRequest} from './../../store/actions/download';
+import { searchRequest } from './../../store/actions/search';
+
 import Pagination from "react-js-pagination";
 
 class ImagesList extends Component {
@@ -120,19 +122,9 @@ class ImagesList extends Component {
                                     location={location}
                                     downloadImage={()=>this.downloadImage(id)}
                                     forceDownload={()=>this.forceDownload(download)}
-                                    handleModalState={() => this.handleModalState(id, description, small)}
+                                    handleModalState={() => this.handleModalState(id, description, full)}
                                 />
                                 </div>
-                           
-                                {/* <img src={raw} />
-                                 <img src={full} />*/}
-                                {/* <img src={regular} /> */}
-                                {/* <img src={small} />
-                                    <img src={thumb} /> */}
-                                {/* <img src={self} /> */}
-                                {/* <img src={html} /> */}
-                                {/* <a href={download_location} download>download</a> */}
-                                {/* <img src={download_location} /> */}
                             </React.Fragment>
                         )
                         
@@ -155,9 +147,6 @@ class ImagesList extends Component {
                        </div>
                   }
                 <ImageModal isOpen={isOpen}
-                    maxWidth='xl'
-                    fullWidth={true}
-                    scroll='body'
                     // fullScreen={true}
                     handleModalState={this.handleModalState}
                     imgObj={imgObj}
@@ -174,4 +163,4 @@ const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pag
         total_pages,
 })
 
-export default connect(mapStateToProps, {downloadApPhotoRequest})(ImagesList);
+export default connect(mapStateToProps, {downloadApPhotoRequest, searchRequest })(ImagesList);

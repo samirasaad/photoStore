@@ -33,7 +33,6 @@ class Home extends Component {
     const { photosList, activePage, photosPerPage } = this.state;
     return (
       <>
-        <h1>Serach for a photo</h1>
         <SearchInput handleChange={this.handleChange}
           handleSubmit={this.handleSubmit} />
         <ImagesList photosList={photosList} />

@@ -4,6 +4,7 @@ import SearchInput from '../../components/SearchInput/SearchInput';
 import { searchRequest } from './../../store/actions/search';
 import ImagesList from '../ImagesList/ImagesList';
 import Pagination from "react-js-pagination";
+import History from './../../routes/History';
 
 
 class Home extends Component {
@@ -17,6 +18,9 @@ class Home extends Component {
     }
   }
   componentDidMount = () => {
+    History.push({
+      search: `?page=1`
+    });
   }
   componentDidUpdate = (prevProps) => {
     const { results } = this.props;
@@ -30,10 +34,16 @@ class Home extends Component {
 
 handlePageChange = (pageNumber) => {
   const { searchRequest } = this.props;
-  const { activePage, photosPerPage } = this.state;
+  const { activePage } = this.state;
   this.setState({ activePage: pageNumber }, () => {
-      searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
-  })
+  const {searchTerm, activePage, photosPerPage } =this.state;
+    Promise.resolve(
+    searchRequest({ query: searchTerm, page: activePage, per_page: photosPerPage })
+   ).then(History.push({
+    search: `?page=${activePage}`
+  })) 
+  });
+  
 }
 
   handleChange = (e) => {
@@ -49,15 +59,14 @@ handlePageChange = (pageNumber) => {
     searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
   }
 
- 
-
   render() {
     const { photosList, activePage, photosPerPage } = this.state;
     const {total} = this.props;
     return (
-      <>
+      <section className='min-h-100'>
         <SearchInput handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit} />
+          handleSubmit={this.handleSubmit} 
+        />
         <ImagesList photosList={photosList} />
         {photosList.length > 0 &&
                     <div className='my-4 w-100'>
@@ -75,7 +84,7 @@ handlePageChange = (pageNumber) => {
                         />
                     </div>
                 }
-      </>
+      </section>
     )
   }
 }

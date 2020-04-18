@@ -4,16 +4,12 @@ import ImageCard from '../../components/ImageCard/ImageCard';
 import './ImagesList.scss';
 import ImageModal from '../../components/ImageModal/ImageModal';
 import { downloadApPhotoRequest } from './../../store/actions/download';
-// import { searchRequest } from './../../store/actions/search';
-
+import History from './../../routes/History';
 
 class ImagesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // photosList: [],
-            // activePage: 1,
-            // photosPerPage: 20,
             isOpen: false,
             profile_image: null,
             location: null,
@@ -25,7 +21,9 @@ class ImagesList extends Component {
         }
     }
     componentDidMount = () => {
-
+        // history.push({
+        //     search: `?page=${history.location.search.split("=")[1] || 1}`
+        //   });
     }
   
 
@@ -125,11 +123,8 @@ class ImagesList extends Component {
     }
 }
 
-const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pages } }) => ({
+const mapStateToProps = ({ locale: { lang } }) => ({
     lang: lang,
-    // results,
-    // total,
-    // total_pages,
 })
 
 export default connect(mapStateToProps, { downloadApPhotoRequest })(ImagesList);

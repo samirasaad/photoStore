@@ -10,6 +10,7 @@ import Loader from "../components/Loader/Loader";
 
 // ========== General styles ==========
 import './App.scss';
+import Footer from '../components/Footer/Footer';
 class App extends Component {
   render() {
     const { lang, loading } = this.props;
@@ -22,6 +23,7 @@ class App extends Component {
           <Router history={history}>
             <Navbar />
             {Routes}
+            <Footer />
           </Router>
         </div>
       </IntlProvider>

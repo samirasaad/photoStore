@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ImageCard from '../../components/ImageCard/ImageCard';
-import './ImagesList.scss';
 import ImageModal from '../../components/ImageModal/ImageModal';
 import { downloadApPhotoRequest } from './../../store/actions/download';
-import History from './../../routes/History';
+import './ImagesList.scss';
 
 class ImagesList extends Component {
     constructor(props) {
@@ -20,20 +19,15 @@ class ImagesList extends Component {
             }
         }
     }
-    componentDidMount = () => {
-        // history.push({
-        //     search: `?page=${history.location.search.split("=")[1] || 1}`
-        //   });
-    }
-  
 
-    handleModalState = (imgId, img_description, imgUrl, profile_image, location) => {
+    handleModalState = (imgId, img_description, imgUrl, profile_image, location, instagram_username) => {
         const { isOpen } = this.state;
         !isOpen ?
             this.setState({
                 isOpen: true,
-                profile_image: profile_image,
-                location: location,
+                profile_image,
+                location,
+                instagram_username,
                 imgObj: {
                     ...this.state.imgObj,
                     imgId,
@@ -77,11 +71,11 @@ class ImagesList extends Component {
     }
     render() {
         const { total } = this.props;
-        // const { photosList } = this.props;
-        const { isOpen, imgObj, profile_image, location, activePage, photosPerPage } = this.state;
-        const {photosList}=this.props;
+        const { isOpen, imgObj, profile_image, location,
+            activePage, photosPerPage, instagram_username } = this.state;
+        const { photosList } = this.props;
         return (
-            <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid my-4 '>
+            <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid my-4 min-vh-100'>
                 {
                     photosList.map(({ id, urls: { raw, full, regular, small, thumb }, likes,
                         links: { self, html, download, download_location, liked_by_user },
@@ -103,7 +97,7 @@ class ImagesList extends Component {
                                         instagram_username={instagram_username}
                                         downloadImage={() => this.downloadImage(id)}
                                         forceDownload={() => this.forceDownload(download)}
-                                        handleModalState={() => this.handleModalState(id, description, full, profile_image.small, location)}
+                                        handleModalState={() => this.handleModalState(id, description, full, profile_image.small, location, instagram_username)}
                                     />
                                 </div>
                             </React.Fragment>
@@ -112,11 +106,11 @@ class ImagesList extends Component {
                     })
                 }
                 <ImageModal isOpen={isOpen}
-                    // fullScreen={true}
                     handleModalState={this.handleModalState}
                     imgObj={imgObj}
                     profile_image={profile_image}
                     location={location}
+                    instagram_username={instagram_username}
                 />
             </section>
         )

@@ -7,7 +7,6 @@ import CardActions from '@material-ui/core/CardActions';
 import UserAvatar from './../../components/UserAvatar/UserAvatar';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
-// import PinDropIcon from '@material-ui/icons/PinDrop';
 import './ImageCard.scss';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ImageCard = (props) => {
-  const { regular, alt_description, likes, profile_image, name, location, handleModalState 
+  const { regular, alt_description, likes, profile_image, name, instagram_username, handleModalState 
     ,downloadImage,forceDownload } = props;
   const classes = useStyles();
   return (
@@ -36,7 +35,7 @@ const ImageCard = (props) => {
          </Link>
             }
           title={name}
-          subheader={location}
+          subheader={'@' + instagram_username}
         />
         <CardMedia
           className={classes.media}

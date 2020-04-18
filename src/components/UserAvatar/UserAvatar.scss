@@ -1,7 +1,15 @@
-.MuiAvatar-img{
-        object-fit: contain;
-    }
+// .MuiAvatar-img{
+//         object-fit: contain;
+//     }
+    // .MuiAvatar-root{
+    //     width:auto;
+    //     height:auto
+    // }
+
     .MuiAvatar-root{
-        width:auto;
-        height:auto
+        img{
+            width:auto;
+            height:auto;
+            border-radius: 50%;
+        }
     }

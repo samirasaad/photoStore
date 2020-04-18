@@ -16,6 +16,8 @@ class ImagesList extends Component {
             activePage: 1,
             photosPerPage:20,
             isOpen: false,
+            profile_image:null,
+            location:null,
             imgObj: {
                 imgId: null,
                 img_description: '',
@@ -43,11 +45,13 @@ class ImagesList extends Component {
         })
       }
 
-    handleModalState = (imgId, img_description, imgUrl) => {
+    handleModalState = (imgId, img_description, imgUrl,profile_image, location) => {
         const { isOpen } = this.state;
         !isOpen ?
             this.setState({
                 isOpen: true,
+                profile_image:profile_image,
+                location:location,
                 imgObj: {
                     ...this.state.imgObj,
                     imgId,
@@ -57,7 +61,6 @@ class ImagesList extends Component {
             }, () => { console.log(this.state) }) :
             this.setState({
                 isOpen: false,
-                imgId: null
             })
     }
    
@@ -91,17 +94,16 @@ class ImagesList extends Component {
         // this.forceDownload()
     }
     render() {
-        const { photosList, activePage, photosPerPage } = this.state;
     const { total } = this.props;
     // const { photosList } = this.props;
-        const { isOpen, imgObj } = this.state;
+        const { isOpen, imgObj,profile_image,location, photosList, activePage, photosPerPage } = this.state;
         return (
             <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid my-4 '>
                 { photosList.length > 0 &&
                     photosList.map(({ id, urls: { raw, full, regular, small, thumb },likes,
                         links: { self, html, download, download_location, liked_by_user },
                         description,
-                        alt_description, user: { profile_image, name, location } }, index) => {
+                        alt_description, user: { profile_image, name, location, instagram_username } }, index) => {
                         return (
                             <React.Fragment key={index}>
                                 {/* <div className='position-relative'>
@@ -120,9 +122,10 @@ class ImagesList extends Component {
                                     profile_image={profile_image.small}
                                     name={name}
                                     location={location}
+                                    instagram_username={instagram_username}
                                     downloadImage={()=>this.downloadImage(id)}
                                     forceDownload={()=>this.forceDownload(download)}
-                                    handleModalState={() => this.handleModalState(id, description, full)}
+                                    handleModalState={() => this.handleModalState(id, description, full,profile_image.small,location)}
                                 />
                                 </div>
                             </React.Fragment>
@@ -150,6 +153,8 @@ class ImagesList extends Component {
                     // fullScreen={true}
                     handleModalState={this.handleModalState}
                     imgObj={imgObj}
+                    profile_image={profile_image}
+                    location={location}
                 />
             </section>
         )

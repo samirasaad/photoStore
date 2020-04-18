@@ -1,3 +1,9 @@
-.img-wrapper{
-    min-height:80vh;
+@import './../../scss//variables';
+.dialog-wrapper{
+    .img-wrapper{
+        min-height:80vh;
+    }
+    .location{
+        color:$secondaryColor;
+    }
 }

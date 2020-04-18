@@ -4,10 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
+import UserAvatar from './../../components/UserAvatar/UserAvatar';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import { Link } from 'react-router-dom';
 // import PinDropIcon from '@material-ui/icons/PinDrop';
 import './ImageCard.scss';
@@ -20,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
     height: 16 + 'em',
     paddingTop: '56.25%'
   },
-  avatar: {
-    width: 'auto'
-  },
+  // avatar: {
+  //   width: 'auto'
+  // },
 }));
 
 const ImageCard = (props) => {
@@ -32,16 +30,11 @@ const ImageCard = (props) => {
   return (
       <Card className={classes.root}>
         <CardHeader
-          avatar={
-            <Link to=''>
-              <Avatar
-                src={profile_image}
-                aria-label="recipe"
-                className={classes.avatar}
-                variant='circle'>
-              </Avatar>
-            </Link>
-          }
+        avatar={
+         <Link to=''>
+           <UserAvatar img={profile_image} />
+         </Link>
+            }
           title={name}
           subheader={location}
         />

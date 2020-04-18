@@ -1,11 +1,17 @@
+import { put, call } from "redux-saga/effects";
+import {loader} from './../../store/actions/Loader';
+import store from './../../store';
+ 
  export const isHandlerEnabled = (config = {}) => {
   return config.hasOwnProperty("handlerEnabled") && !config.handlerEnabled ? false : true;
 };
 
 let acess_key = 'PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0';
+
 export const requestHandler = request => {
   if (isHandlerEnabled(request)) {
     console.log(request);
+     store.dispatch(loader(true));
     const token = localStorage.getItem("token");
     if(token){
       console.log(token);
@@ -13,14 +19,13 @@ export const requestHandler = request => {
     }else{
       console.log('no token');
     }
-    //  request.headers["Authorization"] = `Client-ID PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0`
   }
   return request;
 };
 
 export const successHandler = response => {
   if (isHandlerEnabled(response)) {
-    // DO SOMETHING
+    store.dispatch(loader(false));
   }
   return response;
 };
@@ -28,10 +33,11 @@ export const successHandler = response => {
 export const errorHandler = error => {
   if (isHandlerEnabled(error.config)) {
     console.log(error);
-    if (error.response.status === 401) {
-      // Auth.signOut();
-      window.location.replace(`https://unsplash.com/oauth/authorize?client_id=${acess_key}&redirect_uri=localhost3000`)
-    }
+    store.dispatch(loader(false));
+    // if (error.response.status === 401) {
+    //   // Auth.signOut();
+    //   window.location.replace(`https://unsplash.com/oauth/authorize?client_id=${acess_key}&redirect_uri=localhost3000`)
+    // }
   }
   return Promise.reject({ ...error });
 };

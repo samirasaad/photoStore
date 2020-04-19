@@ -6,7 +6,6 @@ import ImagesList from '../ImagesList/ImagesList';
 import Pagination from "react-js-pagination";
 import History from './../../routes/History';
 
-
 class Home extends Component {
   constructor(props) {
     super(props);

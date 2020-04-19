@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import './Loader.scss'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -16,8 +16,7 @@ export default function CircularIndeterminate() {
 
   return (
     <div className={classes.root}>
-      <CircularProgress />
-      <CircularProgress color="secondary" />
+      <CircularProgress color='primary' className='loader-icon'/>
     </div>
   );
 }

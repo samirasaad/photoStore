@@ -10,8 +10,12 @@ class ImagesList extends Component {
         super(props);
         this.state = {
             isOpen: false,
-            profile_image: null,
-            location: null,
+            userObj:{
+                profile_image: null,
+                location: null,
+                name:null,
+                instagram_username:null
+            },
             imgObj: {
                 imgId: null,
                 img_description: '',
@@ -20,14 +24,18 @@ class ImagesList extends Component {
         }
     }
 
-    handleModalState = (imgId, img_description, imgUrl, profile_image, location, instagram_username) => {
+    handleModalState = (imgId, img_description, imgUrl, profile_image, location, instagram_username,name) => {
         const { isOpen } = this.state;
         !isOpen ?
             this.setState({
                 isOpen: true,
-                profile_image,
-                location,
-                instagram_username,
+                userObj:{
+                    ...this.state.userObj,
+                    profile_image,
+                    location,
+                    instagram_username,
+                    name
+                },
                 imgObj: {
                     ...this.state.imgObj,
                     imgId,
@@ -71,8 +79,8 @@ class ImagesList extends Component {
     }
     render() {
         const { total } = this.props;
-        const { isOpen, imgObj, profile_image, location,
-            activePage, photosPerPage, instagram_username } = this.state;
+        const { isOpen, imgObj, userObj,
+            activePage, photosPerPage,  } = this.state;
         const { searchList } = this.props;
         console.log(searchList)
         return (
@@ -98,7 +106,7 @@ class ImagesList extends Component {
                                         instagram_username={instagram_username}
                                         downloadImage={() => this.downloadImage(id)}
                                         forceDownload={() => this.forceDownload(download)}
-                                        handleModalState={() => this.handleModalState(id, description, full, profile_image.small, location, instagram_username)}
+                                        handleModalState={() => this.handleModalState(id, description, full, profile_image.small, location, instagram_username,name)}
                                     />
                                 </div>
                             </React.Fragment>
@@ -109,9 +117,7 @@ class ImagesList extends Component {
                 <ImageModal isOpen={isOpen}
                     handleModalState={this.handleModalState}
                     imgObj={imgObj}
-                    profile_image={profile_image}
-                    location={location}
-                    instagram_username={instagram_username}
+                    userObj={userObj}
                 />
             </section>
         )

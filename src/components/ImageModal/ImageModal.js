@@ -5,7 +5,7 @@ import UserAvatar from '../UserAvatar/UserAvatar';
 import './ImageModal.scss';
 
 const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl },
-    profile_image, location, instagram_username }) => {
+    userObj:{profile_image, location, instagram_username, name} }) => {
     return (
         <Dialog
             fullWidth={true}
@@ -19,7 +19,16 @@ const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl },
                 <div className='d-flex align-items-baselinr'>
                     <UserAvatar img={profile_image} />
                     <p className='user-name mt-2'>
-                        {'@' + instagram_username}
+                        {console.log(instagram_username)}
+                        {console.log(name)}
+                       {
+                           instagram_username ?(
+                            '@' + instagram_username
+                           ):
+                           (
+                            '@' + name
+                           )
+                       }
                     </p>
                 </div>
                 <div className='text-center img-wrapper' style={{

@@ -33,7 +33,7 @@ const ImageCard = (props) => {
          </Link>
             }
           title={name}
-          subheader={'@' + instagram_username}
+          subheader={instagram_username ? '@' +  instagram_username : '@' + name}
         />
         <CardMedia
           className={classes.media}

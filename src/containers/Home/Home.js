@@ -18,10 +18,10 @@ class Home extends Component {
     }
   }
   componentDidMount = () => {
-    const {activePage, photosPerPage} =this.state
-    History.push({
-      search: `?page=1`
-    });
+    // const {activePage, photosPerPage} =this.state
+    // History.push({
+    //   search: `?page=1`
+    // });
   }
   componentDidUpdate = (prevProps) => {
     const { results } = this.props;
@@ -57,8 +57,8 @@ class Home extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { searchRequest } = this.props;
-    const { activePage, photosPerPage } = this.state;
-    History.push('/PhotoStore?page=1')
+    const { activePage, photosPerPage ,searchTerm} = this.state;
+    History.push(`/PhotoStore/${searchTerm}?page=1`)
     searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
   }
 

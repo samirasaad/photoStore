@@ -73,11 +73,12 @@ class ImagesList extends Component {
         const { total } = this.props;
         const { isOpen, imgObj, profile_image, location,
             activePage, photosPerPage, instagram_username } = this.state;
-        const { photosList } = this.props;
+        const { searchList } = this.props;
+        console.log(searchList)
         return (
             <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid my-4 min-vh-100'>
-                {
-                    photosList.map(({ id, urls: { raw, full, regular, small, thumb }, likes,
+                {searchList &&
+                    searchList.map(({ id, urls: { raw, full, regular, small, thumb }, likes,
                         links: { self, html, download, download_location, liked_by_user },
                         description,
                         alt_description, user: { profile_image, name, location, instagram_username } }, index) => {

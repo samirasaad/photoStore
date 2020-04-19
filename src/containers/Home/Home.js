@@ -12,21 +12,23 @@ class Home extends Component {
     super(props);
     this.state = {
       searchTerm: '',
-      photosList: [],
+      searchList: [],
       activePage: 1,
       photosPerPage: 20,
     }
   }
   componentDidMount = () => {
+    const {activePage, photosPerPage} =this.state
     History.push({
       search: `?page=1`
     });
   }
   componentDidUpdate = (prevProps) => {
     const { results } = this.props;
-    if (prevProps.results !== this.props.results) {
+    if (prevProps.results !== this.props.results ) {
+      console.log('search')
       this.setState({
-        photosList: results
+        searchList: results
       })
     }
   }
@@ -61,15 +63,15 @@ class Home extends Component {
   }
 
   render() {
-    const { photosList, activePage, photosPerPage } = this.state;
+    const { searchList, activePage, photosPerPage } = this.state;
     const { total } = this.props;
     return (
       <section className='min-h-100'>
         <SearchInput handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <ImagesList photosList={photosList} />
-        {photosList.length > 0 &&
+        <ImagesList searchList={ searchList } />
+        {searchList.length > 0 &&
           <div className='my-4 w-100'>
             <Pagination
               className='justify-content-center'
@@ -90,11 +92,16 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pages } }) => ({
+const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pages }, listAllPhotos }) => ({
   lang,
   results,
   total,
   total_pages,
+  listAllPhotos
 })
 
-export default connect(mapStateToProps, { searchRequest })(Home);
+export default connect(mapStateToProps, 
+  { 
+  searchRequest 
+})
+(Home);

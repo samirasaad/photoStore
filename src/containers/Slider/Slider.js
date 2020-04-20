@@ -4,6 +4,7 @@ import { featuredCollectionsRequest } from './../../store/actions/featuredCollec
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import './Slider.scss';
 
 class SimpleSlider extends React.Component {
     constructor(props) {
@@ -39,14 +40,40 @@ class SimpleSlider extends React.Component {
         const { featuredCollections } = this.state;
         console.log(featuredCollections)
         var settings = {
-            dots: true,
+            dots: false,
             infinite: true,
             speed: 100,
-            slidesToShow: 3,
-            slidesToScroll: 1
+            slidesToShow: 10,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                  }
+                },
+                {
+                  breakpoint: 600,
+                  settings: {
+                    slidesToShow:3,
+                    slidesToScroll: 3,
+                    // initialSlide: 3
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                  }
+                }
+              ]
         };
         return (
-            <section className='bg-dark'>
+            <section className='slider-wrapper px-5 container-fluid'>
                 <Slider {...settings}>
                { featuredCollections .length > 0 &&  this.renderSlides()}
                </Slider>

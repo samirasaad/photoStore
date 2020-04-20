@@ -11,7 +11,7 @@ const Routes = (
     <Router history={history}>
       <Switch>
         <LazyComponent.Home path="/" exact />
-        <LazyComponent.Home path="/PhotoStore/:searcTerm" exact />
+        <LazyComponent.ImagesList path="/ImagesList/:searcTerm" exact />
         {/* <Redirect from="*" to="/" /> */}
       </Switch>
     </Router>

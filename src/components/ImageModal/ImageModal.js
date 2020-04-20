@@ -2,9 +2,10 @@ import React from 'react';
 import { Dialog, Button, DialogActions, DialogContent } from '@material-ui/core';
 import PinDropIcon from '@material-ui/icons/PinDrop';
 import UserAvatar from '../UserAvatar/UserAvatar';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import './ImageModal.scss';
 
-const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl },
+const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl,likes },
     userObj: { profile_image, location, instagram_username, name } }) => {
     return (
         <Dialog
@@ -41,6 +42,9 @@ const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl },
                         <>
                             <PinDropIcon color='secondary' />
                             <span className='location'>{location}</span>
+                            <p className='mt-2  no-of-likes' > 
+                            <FavoriteIcon color='secondary' />
+                            {likes}</p>
                         </>
                     }
                 </div>

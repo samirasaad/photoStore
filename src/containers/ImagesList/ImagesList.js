@@ -166,7 +166,7 @@ class ImagesList extends Component {
               alt_description, user: { profile_image, name, location, instagram_username } }, index) => {
               return (
                 <React.Fragment key={index}>
-                  <div className='card-wrapper d-flex justify-content-center'>
+                  <div className='card-wrapper d-flex flex-wrap'>
                     <ImageCard
                       likes={likes}
                       regular={regular}

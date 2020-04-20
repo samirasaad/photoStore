@@ -4,7 +4,7 @@ import SearchInput from '../../components/SearchInput/SearchInput';
 import { searchRequest } from './../../store/actions/search';
 import ImagesList from '../ImagesList/ImagesList';
 import History from './../../routes/History';
-
+import SimpleSlider from './../Slider/Slider';
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -69,6 +69,7 @@ class Home extends Component {
     const { total } = this.props;
     return (
       <section className='min-vh-100'>
+        <SimpleSlider />
         <SearchInput handleChange={this.handleChange}
           handleSubmit={this.handleSubmit} valuse={searchTerm}
         />

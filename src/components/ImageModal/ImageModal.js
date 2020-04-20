@@ -1,12 +1,13 @@
 import React from 'react';
-import { Dialog, Button, DialogActions, DialogContent } from '@material-ui/core';
+import { Dialog, Button, DialogActions, DialogContent, IconButton } from '@material-ui/core';
 import PinDropIcon from '@material-ui/icons/PinDrop';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 import './ImageModal.scss';
 
-const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl,likes },
-    userObj: { profile_image, location, instagram_username, name } }) => {
+const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl, likes },
+    userObj: { profile_image, location, instagram_username, name },downloadSelectedImage }) => {
     return (
         <Dialog
             fullWidth={true}
@@ -17,8 +18,9 @@ const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl,likes },
             className='dialog-wrapper'
         >
             <DialogContent >
-                <div className='d-flex align-items-baselinr'>
-                    <UserAvatar img={profile_image} />
+                <div className='d-flex justify-content-between'>
+                   <div className='d-flex '>
+                   <UserAvatar img={profile_image} />
                     <p className='user-name mt-2'>
                         {
                             instagram_username ? (
@@ -29,6 +31,12 @@ const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl,likes },
                                 )
                         }
                     </p>
+                   </div>
+                    <div>
+                        <IconButton onClick={downloadSelectedImage} >
+                            <SystemUpdateAltIcon className='download-icon' />
+                        </IconButton>
+                    </div>
                 </div>
                 <div className='text-center img-wrapper' style={{
                     backgroundImage: `url(${imgUrl})`,
@@ -37,25 +45,25 @@ const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl,likes },
                     backgroundPosition: `center`
                 }}>
                 </div>
-                <div>
+                <div className='mt-1'>
                     {location &&
                         <>
                             <PinDropIcon color='secondary' />
-                            <span className='location'>{location}</span>
-                            <p className='mt-2  no-of-likes' > 
-                            <FavoriteIcon color='secondary' />
-                            {likes}</p>
+                            <span className='location mx-2'>
+                                {location}
+                            </span>
+                            <p className='mt-2  no-of-likes' >
+                                <FavoriteIcon color='secondary' />
+                               <span className='mx-2'>{likes}</span> 
+                            </p>
                         </>
                     }
                 </div>
             </DialogContent>
             <DialogActions>
-                     <Button onClick={handleModalState} >
-                      close
-                     </Button>
-                     <Button >
-                       download
-                     </Button>
+                <button onClick={handleModalState} className='btn button-secondary' >
+                    Close
+                </button>
             </DialogActions>
         </Dialog>
     );

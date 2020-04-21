@@ -144,6 +144,10 @@ class ImagesList extends Component {
     const { downloadApPhotoRequest } = this.props;
     downloadApPhotoRequest({ id })
   }
+  likeAphoto= () =>{
+    console.log('like');
+    window.location.replace(`https://unsplash.com/oauth/authorize?client_id=PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0&redirect_uri=https://unsplash.com&response_type=code`)
+  }
   render() {
     const { total } = this.props;
     const { isOpen, imgObj, userObj,
@@ -182,7 +186,8 @@ class ImagesList extends Component {
                       downloadImage={() => this.downloadImage(id)}
                       forceDownload={() => this.forceDownload(download)}
                       handleModalState={() => this.handleModalState(id, description, full, profile_image.small, location, instagram_username, name, likes)}
-                      downloadSelectedImage={() => this.downloadSelectedImage(id)} />
+                      downloadSelectedImage={() => this.downloadSelectedImage(id)} 
+                      likeAphoto={this.likeAphoto}/>
                   </div>
                 </React.Fragment>
               )

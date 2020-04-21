@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ImageCard = (props) => {
   const { regular, alt_description, likes, profile_image, name, instagram_username, handleModalState
-    , downloadImage, forceDownload, thumb, downloadSelectedImage } = props;
+    , downloadImage, forceDownload, thumb, downloadSelectedImage,likeAphoto } = props;
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -44,7 +44,7 @@ const ImageCard = (props) => {
       />
       <CardActions className='my-2 justify-content-between'>
         <div >
-        <FavoriteIcon color='secondary' />
+        <FavoriteIcon color='secondary' onClick={likeAphoto}/>
         <span className='no-of-likes mx-2'>{likes}</span>
         </div>
         <div>

@@ -59,8 +59,10 @@ class Home extends Component {
     Promise.resolve(
       searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
     ).then(
-    History.push(`/ImagesList/${searchTerm}?page=1`)
-
+    History.push({
+      pathname:`/imagesList/${searchTerm}`,
+      search:`?page=1`,
+    })
     )
   }
 

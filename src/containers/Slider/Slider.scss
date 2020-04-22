@@ -2,10 +2,15 @@
 .slider-wrapper{
     min-height:100px;
     .slick-slide{
-        background-color: #f4f4f4;
+        background-color: #f7f7f7;
         border-radius: 14px;
         text-align: center;
         margin: 0 2px 0 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 8px;
+        text-transform: lowercase;
+        cursor: pointer;
     }
     .slick-next:before, .slick-prev:before{
         color:$primaryColor;

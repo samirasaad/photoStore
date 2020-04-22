@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import History from './../../routes/History';
 import { featuredCollectionsRequest } from './../../store/actions/featuredCollections';
+import { searchRequest } from './../../store/actions/search';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -10,27 +12,32 @@ class SimpleSlider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            featuredCollections: []
+            featuredCollections: ['whatsapp','love','flowers','roses','spring','alexandria','cars','winter','fish','letters','session','rain','children','wedding','search','google','youtube']
         }
     }
     componentDidMount = () => {
-        this.props.featuredCollectionsRequest({ page: 1, per_page: 20 })
+        // this.props.featuredCollectionsRequest({ page: 2, per_page: 30 })
     }
     componentDidUpdate = (prevProps) => {
         if (prevProps.featuredCollections !== this.props.featuredCollections) {
             this.setState({
-                featuredCollections: this.props.featuredCollections
+                // featuredCollections: this.props.featuredCollections
             })
         }
+    }
+    getCollectionImages= (collection)=>{
+        // History.push(`/imagesList/${collection}?page=1`)
+        // console.log('request  images with this search term')
+        // searchRequest({ query: collection, page: 1, per_page: 20 })
     }
     renderSlides = () => {
         const { featuredCollections } = this.state;
         return (
             featuredCollections.map((collection, index) => {
-                console.log(collection)
+                // console.log(collection)
                 return (
-                    <div key={index}>
-                        {collection.title}
+                    <div id={collection} key={index} onClick={()=>this.getCollectionImages(collection)}>
+                        {collection}
                     </div>
                 )
             })
@@ -38,13 +45,13 @@ class SimpleSlider extends React.Component {
     }
     render() {
         const { featuredCollections } = this.state;
-        console.log(featuredCollections)
+        // console.log(featuredCollections)
         var settings = {
             dots: false,
             infinite: true,
             speed: 100,
-            slidesToShow: 10,
-            slidesToScroll: 1,
+            slidesToShow: 8,
+            slidesToScroll: 2,
             responsive: [
                 {
                   breakpoint: 1024,
@@ -66,8 +73,8 @@ class SimpleSlider extends React.Component {
                 {
                   breakpoint: 480,
                   settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2
+                    slidesToShow: 1,
+                    slidesToScroll: 1
                   }
                 }
               ]
@@ -75,7 +82,7 @@ class SimpleSlider extends React.Component {
         return (
             <section className='slider-wrapper px-5 container-fluid'>
                 <Slider {...settings}>
-               { featuredCollections .length > 0 &&  this.renderSlides()}
+               { featuredCollections.length > 0 &&  this.renderSlides()}
                </Slider>
             </section>
         );

@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import ImageCard from '../../components/ImageCard/ImageCard';
 import ImageModal from '../../components/ImageModal/ImageModal';
 import { downloadApPhotoRequest } from './../../store/actions/download';
-import './ImagesList.scss';
 import { searchRequest } from '../../store/actions/search';
 import Pagination from "react-js-pagination";
 import History from './../../routes/History';
 import SearchInput from '../../components/SearchInput/SearchInput';
-
+import './ImagesList.scss';
 
 class ImagesList extends Component {
   constructor(props) {
@@ -19,6 +18,7 @@ class ImagesList extends Component {
       photosPerPage: 20,
       searchList: [],
       searchTerm: '',
+      total: null,
       userObj: {
         profile_image: null,
         location: null,
@@ -36,33 +36,32 @@ class ImagesList extends Component {
   componentDidMount = () => {
     const { photosPerPage } = this.state;
     const { searchRequest } = this.props;
-    console.log(window.location)
-    let searchTerm = window.location.href.split('/')[window.location.href.split('/').length - 1].split("?")[0] || 1;
-    let activePage = window.location.href.split('/')[window.location.href.split('/').length - 1].split("?")[1].split('=')[1] || 1;
-    console.log(searchTerm)
-    this.setState({
-      searchTerm,
-      activePage
-    })
-    //   Promise.resolve(
-    searchRequest({ query: searchTerm, page: +activePage, per_page: photosPerPage })
-    //   ).then(History.push({
-    //     search: `?page=${pageNumber}`
-    //   }))
+    let searchTerm = this.props.computedMatch.params.searcTerm;
+    let activePage = window.location.search.split('=')[1];
+    searchRequest({ query: searchTerm, page: +activePage, per_page: photosPerPage });
+    this.setState({ searchTerm, activePage })
   }
+
   componentDidUpdate = (prevProps) => {
-    const { results } = this.props;
-    if (prevProps.results !== this.props.results) {
-      console.log('search')
+    const { photosPerPage } = this.state;
+    const { results, total } = this.props;
+    //making request again on back or forwaard
+    // if (prevProps.computedMatch.params.searcTerm !== this.props.computedMatch.params.searcTerm) {
+    //   let searchTerm = this.props.computedMatch.params.searcTerm;
+    //   let activePage = window.location.search.split('=')[1];
+    //   searchRequest({ query: searchTerm, page: +activePage, per_page: photosPerPage });
+    //   this.setState({ searchTerm, activePage })
+    // }
+    if (prevProps.results !== this.props.results || prevProps.total !== this.props.total) {
       this.setState({
-        searchList: results
+        searchList: results,
+        total
       })
     }
   }
 
   handlePageChange = (pageNumber) => {
     const { searchRequest } = this.props;
-    const { activePage } = this.state;
     this.setState({ activePage: pageNumber }, () => {
       const { searchTerm, activePage, photosPerPage } = this.state;
       Promise.resolve(
@@ -99,59 +98,33 @@ class ImagesList extends Component {
       })
   }
 
-  forceDownload = (url) => {
-    console.log(url);
-    //  debugger;
-    // var url = link.getAttribute("data-href");
-    // var fileName = link.getAttribute("download");
-    // link.innerText = "Working...";
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("GET", url, true);
-    // xhr.responseType = "blob";
-    // xhr.onload =()=>{
-    //     var urlCreator = window.URL || window.webkitURL;
-    //     var imageUrl = urlCreator.createObjectURL(this.response);
-    //     var tag = document.createElement('a');
-    //     tag.href = imageUrl;
-    //     // tag.download = fileName;
-    //     document.body.appendChild(tag);
-    //     tag.click();
-    //     document.body.removeChild(tag);
-    //     // link.innerText="Download Image";
-    // }
-    // xhr.send();
-  }
-
-  downloadImage = (id) => {
-    const { downloadApPhotoRequest } = this.props;
-    console.log(id);
-    // downloadApPhotoRequest({id})
-    // this.forceDownload()
-  }
   handleChange = (e) => {
     this.setState({
       searchTerm: e.target.value
     })
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { searchRequest } = this.props;
     const { activePage, photosPerPage, searchTerm } = this.state;
-    History.push(`/ImagesList/${searchTerm}?page=1`)
+    History.push({
+      pathname: `/ImagesList/${searchTerm}`,
+      search: `?page=1`
+    })
     searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
   }
   downloadSelectedImage = (id) => {
     const { downloadApPhotoRequest } = this.props;
     downloadApPhotoRequest({ id })
   }
-  likeAphoto= () =>{
+  likeAphoto = () => {
     console.log('like');
     window.location.replace(`https://unsplash.com/oauth/authorize?client_id=PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0&redirect_uri=https://unsplash.com&response_type=code`)
   }
   render() {
-    const { total } = this.props;
     const { isOpen, imgObj, userObj,
-      activePage, photosPerPage, searchTerm } = this.state;
+      activePage, photosPerPage, searchTerm, total } = this.state;
     const { searchList } = this.state;
     console.log(searchList)
     console.log(searchTerm)
@@ -186,28 +159,30 @@ class ImagesList extends Component {
                       downloadImage={() => this.downloadImage(id)}
                       forceDownload={() => this.forceDownload(download)}
                       handleModalState={() => this.handleModalState(id, description, full, profile_image.small, location, instagram_username, name, likes)}
-                      downloadSelectedImage={() => this.downloadSelectedImage(id)} 
-                      likeAphoto={this.likeAphoto}/>
+                      downloadSelectedImage={() => this.downloadSelectedImage(id)}
+                      likeAphoto={this.likeAphoto} />
                   </div>
                 </React.Fragment>
               )
 
             })
           }
-          <div className='my-4 w-100'>
-            <Pagination
-              className='justify-content-center'
-              itemClass="page-item"
-              linkClass="page-link"
-              activePage={+activePage}
-              itemsCountPerPage={photosPerPage}
-              totalItemsCount={total}
-              pageRangeDisplayed={5}
-              onChange={this.handlePageChange}
-              prevPageText='Prev'
-              nextPageText='Next'
-            />
-          </div>
+          {searchList && total &&
+            <div className='my-4 w-100'>
+              <Pagination
+                className='justify-content-center'
+                itemClass="page-item"
+                linkClass="page-link"
+                activePage={+activePage}
+                itemsCountPerPage={photosPerPage}
+                totalItemsCount={total}
+                pageRangeDisplayed={5}
+                onChange={this.handlePageChange}
+                prevPageText='Prev'
+                nextPageText='Next'
+              />
+            </div>
+          }
           <ImageModal isOpen={isOpen}
             handleModalState={this.handleModalState}
             downloadSelectedImage={() => this.downloadSelectedImage(imgObj.id)}

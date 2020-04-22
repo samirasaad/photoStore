@@ -15,26 +15,20 @@ class SimpleSlider extends React.Component {
             featuredCollections: ['whatsapp','love','flowers','roses','spring','alexandria','cars','winter','fish','letters','session','rain','children','wedding','search','google','youtube']
         }
     }
-    componentDidMount = () => {
-        // this.props.featuredCollectionsRequest({ page: 2, per_page: 30 })
-    }
+    
     componentDidUpdate = (prevProps) => {
         if (prevProps.featuredCollections !== this.props.featuredCollections) {
             this.setState({
-                // featuredCollections: this.props.featuredCollections
             })
         }
     }
     getCollectionImages= (collection)=>{
-        // History.push(`/imagesList/${collection}?page=1`)
-        // console.log('request  images with this search term')
-        // searchRequest({ query: collection, page: 1, per_page: 20 })
+        History.push(`/imagesList/${collection}?page=1`)
     }
     renderSlides = () => {
         const { featuredCollections } = this.state;
         return (
             featuredCollections.map((collection, index) => {
-                // console.log(collection)
                 return (
                     <div id={collection} key={index} onClick={()=>this.getCollectionImages(collection)}>
                         {collection}
@@ -45,7 +39,6 @@ class SimpleSlider extends React.Component {
     }
     render() {
         const { featuredCollections } = this.state;
-        // console.log(featuredCollections)
         var settings = {
             dots: false,
             infinite: true,

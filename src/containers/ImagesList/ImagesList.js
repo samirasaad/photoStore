@@ -7,6 +7,7 @@ import { searchRequest } from '../../store/actions/search';
 import Pagination from "react-js-pagination";
 import History from './../../routes/History';
 import SearchInput from '../../components/SearchInput/SearchInput';
+import SimpleSlider from './../Slider/Slider';
 import './ImagesList.scss';
 
 class ImagesList extends Component {
@@ -44,14 +45,14 @@ class ImagesList extends Component {
 
   componentDidUpdate = (prevProps) => {
     const { photosPerPage } = this.state;
-    const { results, total } = this.props;
-    //making request again on back or forwaard
-    // if (prevProps.computedMatch.params.searcTerm !== this.props.computedMatch.params.searcTerm) {
-    //   let searchTerm = this.props.computedMatch.params.searcTerm;
-    //   let activePage = window.location.search.split('=')[1];
-    //   searchRequest({ query: searchTerm, page: +activePage, per_page: photosPerPage });
-    //   this.setState({ searchTerm, activePage })
-    // }
+    const { results, total,searchRequest } = this.props;
+    //MAKING REQUEST ON BACK OR FORWARD,each time params channging
+    if (prevProps.computedMatch.params.searcTerm !== this.props.computedMatch.params.searcTerm) {
+      let searchTerm = this.props.computedMatch.params.searcTerm;
+      let activePage = window.location.search.split('=')[1];
+      searchRequest({ query: searchTerm, page: +activePage, per_page: photosPerPage });
+      this.setState({ searchTerm, activePage })
+    }
     if (prevProps.results !== this.props.results || prevProps.total !== this.props.total) {
       this.setState({
         searchList: results,
@@ -118,19 +119,18 @@ class ImagesList extends Component {
     const { downloadApPhotoRequest } = this.props;
     downloadApPhotoRequest({ id })
   }
-  likeAphoto = () => {
-    console.log('like');
-    window.location.replace(`https://unsplash.com/oauth/authorize?client_id=PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0&redirect_uri=https://unsplash.com&response_type=code`)
-  }
+  // likeAphoto = () => {
+  //   console.log('like');
+  //   window.location.replace(`https://unsplash.com/oauth/authorize?client_id=PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0&redirect_uri=https://unsplash.com&response_type=code`)
+  // }
   render() {
     const { isOpen, imgObj, userObj,
       activePage, photosPerPage, searchTerm, total } = this.state;
     const { searchList } = this.state;
-    console.log(searchList)
-    console.log(searchTerm)
     return (
       <>
         <div>
+        <SimpleSlider />
           <SearchInput handleChange={this.handleChange}
             handleSubmit={this.handleSubmit} value={searchTerm}
           />

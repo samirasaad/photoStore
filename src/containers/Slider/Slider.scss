@@ -1,6 +1,9 @@
 @import './../../scss/variables';
 .slider-wrapper{
     min-height:100px;
+    .slick-track{
+     margin-top:10px
+    }
     .slick-slide{
         background-color: #f7f7f7;
         border-radius: 14px;
@@ -14,6 +17,7 @@
     }
     .slick-next:before, .slick-prev:before{
         color:$primaryColor;
+        font-size:25px !important;
     }
     .slick-prev:before{
         left:0px !important

@@ -8,6 +8,7 @@ import Pagination from "react-js-pagination";
 import History from './../../routes/History';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import SimpleSlider from './../Slider/Slider';
+import noDataFound from './../../assets/images/noDataFound.jpg'
 import './ImagesList.scss';
 
 class ImagesList extends Component {
@@ -23,7 +24,7 @@ class ImagesList extends Component {
       userObj: {
         profile_image: null,
         location: null,
-        username:null,
+        username: null,
         // name: null,
         // instagram_username: null
       },
@@ -46,7 +47,7 @@ class ImagesList extends Component {
 
   componentDidUpdate = (prevProps) => {
     const { photosPerPage } = this.state;
-    const { results, total,searchRequest } = this.props;
+    const { results, total, searchRequest } = this.props;
     //MAKING REQUEST ON BACK OR FORWARD,each time params channging
     if (prevProps.computedMatch.params.searcTerm !== this.props.computedMatch.params.searcTerm) {
       let searchTerm = this.props.computedMatch.params.searcTerm;
@@ -130,54 +131,65 @@ class ImagesList extends Component {
     return (
       <>
         <div>
-        <SimpleSlider />
+          <SimpleSlider />
           <SearchInput handleChange={this.handleChange}
             handleSubmit={this.handleSubmit} value={searchTerm}
           />
         </div>
-        <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid my-4 min-vh-100'>
-          {searchList &&
-            searchList.map(({ 
-              id, 
-              urls: { full, regular, thumb },
-              likes,
-              description,
-              alt_description, 
-              links: { download, download_location },
-              user,
-              user: { profile_image:{small}, username, location, instagram_username} 
-            }, index) => {
-              return (
-                <React.Fragment key={index}>
-                  <div className='card-wrapper d-flex flex-wrap'>
-                    <ImageCard
-                      userData={user}
-                      // likes={likes}
-                      // regular={regular}
-                      // thumb={thumb}
-                      // profile_image={profile_image.small}
-                      // alt_description={alt_description}
-                      imgData={{likes,alt_description,description,regular}}
-                      // download={download}
-                      // download_location={download_location}
-                      // name={name}
-                      // userId={user.id}
-                      // location={location}
-                      // instagram_username={instagram_username}
-                      // username={username}
-                      // downloadImage={() => this.downloadImage(id)}
-                      // forceDownload={() => this.forceDownload(download)}
-                      handleModalState={() => this.handleModalState(id, description, full, small, location, username , likes)}
-                      downloadSelectedImage={() => this.downloadSelectedImage(id)}
-                      // likeAphoto={this.likeAphoto} 
-                      />
-                  </div>
-                </React.Fragment>
-              )
-
-            })
+        <section className='image-list-wrapper container-fluid my-4 min-vh-100'>
+          {
+            searchList.length > 0 ?
+              <div className='d-flex flex-row flex-wrap'>
+                {searchList.map(({
+                  id,
+                  urls: { full, regular, thumb },
+                  likes,
+                  description,
+                  alt_description,
+                  links: { download, download_location },
+                  user,
+                  user: { profile_image: { small }, username, location, instagram_username }
+                }, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <div className='card-wrapper d-flex flex-wrap'>
+                        <ImageCard
+                          userData={user}
+                          // likes={likes}
+                          // regular={regular}
+                          // thumb={thumb}
+                          // profile_image={profile_image.small}
+                          // alt_description={alt_description}
+                          imgData={{ likes, alt_description, description, regular }}
+                          // download={download}
+                          // download_location={download_location}
+                          // name={name}
+                          // userId={user.id}
+                          // location={location}
+                          // instagram_username={instagram_username}
+                          // username={username}
+                          // downloadImage={() => this.downloadImage(id)}
+                          // forceDownload={() => this.forceDownload(download)}
+                          handleModalState={() => this.handleModalState(id, description, full, small, location, username, likes)}
+                          downloadSelectedImage={() => this.downloadSelectedImage(id)}
+                        // likeAphoto={this.likeAphoto} 
+                        />
+                      </div>
+                    </React.Fragment>
+                  )
+                })
+                }
+              </div>
+              :
+              <div style={{
+                backgroundImage: `url(${noDataFound})`,
+                minHeight: `50em`,
+                backgroundSize: `contain`,
+                backgroundRepeat: `no-repeat`,
+                backgroundPosition: `center`
+              }}></div>
           }
-          {searchList && total &&
+          {searchList && total > 0 &&
             <div className='my-4 w-100'>
               <Pagination
                 className='justify-content-center'

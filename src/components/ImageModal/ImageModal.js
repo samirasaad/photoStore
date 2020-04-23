@@ -20,8 +20,8 @@ const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl, likes },
             <DialogContent >
                 <div className='d-flex justify-content-between'>
                    <div className='d-flex '>
-                   <UserAvatar img={profile_image} />
-                    <p className='user-name mt-2'>
+                   <UserAvatar img={profile_image} size='small'/>
+                    <p className='user-name m-2'>
                         {
                             instagram_username ? (
                                 '@' + instagram_username

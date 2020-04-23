@@ -18,7 +18,9 @@ class PhotgrapherProfile extends Component {
     render() {
         const { userInfo } = this.state;
         return (
-            <PhotogragherInfo userInfo={userInfo} />
+            <section className='min-vh-100'>
+                <PhotogragherInfo userInfo={userInfo} />
+            </section>
         )
     }
 }

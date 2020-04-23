@@ -35,7 +35,7 @@ const ImageCard = (props) => {
             state:{userData}
           }}
           >
-            <UserAvatar img={small} />
+            <UserAvatar img={small} size='small'/>
           </Link>
         }
         title={name}

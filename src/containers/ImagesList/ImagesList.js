@@ -185,7 +185,7 @@ class ImagesList extends Component {
           }
           <ImageModal isOpen={isOpen}
             handleModalState={this.handleModalState}
-            downloadSelectedImage={() => this.downloadSelectedImage(imgObj.id)}
+            downloadSelectedImage={() => this.downloadSelectedImage(imgObj.imgId)}
             imgObj={imgObj}
             userObj={userObj}
           />

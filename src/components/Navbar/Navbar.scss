@@ -1,0 +1,14 @@
+@import './../../scss//variables';
+.nav-bar-wrapper{
+    height: 4em;
+    background-color: #f8f8f8;
+    box-shadow: 0px 0px 9px 1px #cbcbcb;
+    a{
+        color:$primaryColor;
+        font-size:1.6em;
+        &:hover{
+        color:$primaryColor;
+         box-shadow: 0px 0px 9px  #cbcbcb;
+        }
+    }
+}   

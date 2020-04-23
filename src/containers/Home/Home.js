@@ -5,6 +5,8 @@ import { searchRequest } from './../../store/actions/search';
 import ImagesList from '../ImagesList/ImagesList';
 import History from './../../routes/History';
 import SimpleSlider from './../Slider/Slider';
+import { photographerProfileRequest } from './../../store/actions/photographerProfile';
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +22,7 @@ class Home extends Component {
     // History.push({
     //   search: `?page=1`
     // });
+    this.props.photographerProfileRequest({username:'christianw'})
   }
   // componentDidUpdate = (prevProps) => {
   //   const { results } = this.props;
@@ -96,6 +99,6 @@ const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pag
 
 export default connect(mapStateToProps, 
   { 
-  searchRequest 
+  searchRequest ,photographerProfileRequest
 })
 (Home);

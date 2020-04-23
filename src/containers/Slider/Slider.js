@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import History from './../../routes/History';
-import { featuredCollectionsRequest } from './../../store/actions/featuredCollections';
 import { searchRequest } from './../../store/actions/search';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -85,4 +84,4 @@ class SimpleSlider extends React.Component {
 const mapStateToProps = ({ featuredCollections:list }) => ({
     featuredCollections:list
 })
-export default connect(mapStateToProps, { featuredCollectionsRequest })(SimpleSlider);
+export default connect(mapStateToProps, {})(SimpleSlider);

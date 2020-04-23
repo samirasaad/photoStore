@@ -140,7 +140,7 @@ class ImagesList extends Component {
             searchList.map(({ id, urls: { raw, full, regular, small, thumb }, likes,
               links: { self, html, download, download_location, liked_by_user },
               description,
-              alt_description, user: { profile_image, name, location, instagram_username } }, index) => {
+              alt_description, user,user: { profile_image, name, location,username, instagram_username } }, index) => {
               return (
                 <React.Fragment key={index}>
                   <div className='card-wrapper d-flex flex-wrap'>
@@ -154,8 +154,10 @@ class ImagesList extends Component {
                       download_location={download_location}
                       profile_image={profile_image.small}
                       name={name}
+                      userId={user.id}
                       location={location}
                       instagram_username={instagram_username}
+                      username={username}
                       downloadImage={() => this.downloadImage(id)}
                       forceDownload={() => this.forceDownload(download)}
                       handleModalState={() => this.handleModalState(id, description, full, profile_image.small, location, instagram_username, name, likes)}

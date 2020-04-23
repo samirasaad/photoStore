@@ -12,13 +12,14 @@ export const requestHandler = request => {
   if (isHandlerEnabled(request)) {
     console.log(request);
      store.dispatch(loader(true));
-    const token = localStorage.getItem("token");
-    if(token){
-      console.log(token);
-      request.headers["Authorization"] = `Bearer ${token}`;
-    }else{
-      console.log('no token');
-    }
+     request.headers["Authorization"] = `Client-ID ${acess_key}`
+    // const token = localStorage.getItem("token");
+    // if(token){
+    //   console.log(token);
+    //   request.headers["Authorization"] = `Bearer ${token}`;
+    // }else{
+    //   console.log('no token');
+    // }
   }
   return request;
 };

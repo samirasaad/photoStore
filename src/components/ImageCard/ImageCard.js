@@ -22,14 +22,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ImageCard = (props) => {
-  const { regular, alt_description, likes, profile_image, name, instagram_username, handleModalState
+  const { regular, alt_description, likes, profile_image,userId, name,username, instagram_username, handleModalState
     , downloadImage, forceDownload, thumb, downloadSelectedImage,likeAphoto } = props;
   const classes = useStyles();
+  console.log(userId)
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Link to=''>
+          <Link 
+          to={{
+            pathname:`/profile/${'@'+username}`,
+            state:{photpgrapherId:userId}
+          }}
+          >
             <UserAvatar img={profile_image} />
           </Link>
         }

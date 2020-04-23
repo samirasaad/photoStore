@@ -15,17 +15,16 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 16 + 'em',
     paddingTop: '56.25%'
-  },
-  // avatar: {
-  //   width: 'auto'
-  // },
+  }
 }));
 
 const ImageCard = (props) => {
-  const { regular, alt_description, likes, profile_image,userId, name,username, instagram_username, handleModalState
-    , downloadImage, forceDownload, thumb, downloadSelectedImage,likeAphoto } = props;
+  const { imgData:{regular, alt_description, likes}, userData,
+          userData:{id, name, username, instagram_username, profile_image:{small}},
+          handleModalState,
+          downloadSelectedImage
+           } = props;
   const classes = useStyles();
-  console.log(userId)
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -33,10 +32,10 @@ const ImageCard = (props) => {
           <Link 
           to={{
             pathname:`/profile/${'@'+username}`,
-            state:{photpgrapherId:userId}
+            state:{userData}
           }}
           >
-            <UserAvatar img={profile_image} />
+            <UserAvatar img={small} />
           </Link>
         }
         title={name}
@@ -50,7 +49,7 @@ const ImageCard = (props) => {
       />
       <CardActions className='my-2 justify-content-between'>
         <div >
-        <FavoriteIcon color='secondary' onClick={likeAphoto}/>
+        {/* <FavoriteIcon color='secondary' onClick={likeAphoto}/> */}
         <span className='no-of-likes mx-2'>{likes}</span>
         </div>
         <div>

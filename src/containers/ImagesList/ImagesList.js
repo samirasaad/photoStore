@@ -137,30 +137,37 @@ class ImagesList extends Component {
         </div>
         <section className='d-flex flex-row flex-wrap image-list-wrapper container-fluid my-4 min-vh-100'>
           {searchList &&
-            searchList.map(({ id, urls: { raw, full, regular, small, thumb }, likes,
-              links: { self, html, download, download_location, liked_by_user },
+            searchList.map(({ 
+              id, 
+              urls: { full, regular, thumb },
+              likes,
               description,
-              alt_description, user,user: { profile_image, name, location,username, instagram_username } }, index) => {
+              alt_description, 
+              links: { download, download_location },
+              user,
+              user: { profile_image:{small}, name, location, instagram_username} 
+            }, index) => {
               return (
                 <React.Fragment key={index}>
                   <div className='card-wrapper d-flex flex-wrap'>
                     <ImageCard
-                      likes={likes}
-                      regular={regular}
-                      thumb={thumb}
-                      alt_description={alt_description}
-                      liked_by_user={liked_by_user}
+                      userData={user}
+                      // likes={likes}
+                      // regular={regular}
+                      // thumb={thumb}
+                      // profile_image={profile_image.small}
+                      // alt_description={alt_description}
+                      imgData={{likes,alt_description,description,regular}}
                       download={download}
                       download_location={download_location}
-                      profile_image={profile_image.small}
-                      name={name}
-                      userId={user.id}
-                      location={location}
-                      instagram_username={instagram_username}
-                      username={username}
+                      // name={name}
+                      // userId={user.id}
+                      // location={location}
+                      // instagram_username={instagram_username}
+                      // username={username}
                       downloadImage={() => this.downloadImage(id)}
                       forceDownload={() => this.forceDownload(download)}
-                      handleModalState={() => this.handleModalState(id, description, full, profile_image.small, location, instagram_username, name, likes)}
+                      handleModalState={() => this.handleModalState(id, description, full, small, location, instagram_username, name, likes)}
                       downloadSelectedImage={() => this.downloadSelectedImage(id)}
                       likeAphoto={this.likeAphoto} />
                   </div>

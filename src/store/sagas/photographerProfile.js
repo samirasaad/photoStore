@@ -6,7 +6,6 @@ export function* photographerProfile({payload}) {
   try {
     const response = yield call(API.photographerProfile,payload);
     yield put(photographerProfileRecieve(response.data));
-    console.log(response.data)
   } catch (err) {
     console.log(err);
   }

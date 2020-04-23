@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PhotogragherInfo from '../../components/PhotogragherInfo/PhotogragherInfo'
+import ImagesList from '../ImagesList/ImagesList'
 
 class PhotgrapherProfile extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class PhotgrapherProfile extends Component {
         return (
             <section className='min-vh-100'>
                 <PhotogragherInfo userInfo={userInfo} />
+                <ImagesList />
             </section>
         )
     }

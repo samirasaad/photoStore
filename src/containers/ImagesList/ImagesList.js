@@ -4,6 +4,7 @@ import ImageCard from '../../components/ImageCard/ImageCard';
 import ImageModal from '../../components/ImageModal/ImageModal';
 import { downloadApPhotoRequest } from './../../store/actions/download';
 import { searchRequest } from '../../store/actions/search';
+import { photographerProfileRequest } from './../../store/actions/photographerProfile';
 import Pagination from "react-js-pagination";
 import History from './../../routes/History';
 import SearchInput from '../../components/SearchInput/SearchInput';
@@ -38,18 +39,28 @@ class ImagesList extends Component {
   }
   componentDidMount = () => {
     const { photosPerPage } = this.state;
-    const { searchRequest } = this.props;
-    let searchTerm = this.props.computedMatch.params.searcTerm;
-    let activePage = window.location.search.split('=')[1];
-    searchRequest({ query: searchTerm, page: +activePage, per_page: photosPerPage });
-    this.setState({ searchTerm, activePage })
+    const { searchRequest, photographerProfileRequest } = this.props;
+    //coming with search term from home or  from photographer profile
+    if (this.props.computedMatch && this.props.computedMatch.params.hasOwnProperty('searcTerm')) {
+      let searchTerm = this.props.computedMatch.params.searcTerm;
+      let activePage = window.location.search.split('=')[1];
+      searchRequest({ query: searchTerm, page: +activePage, per_page: photosPerPage });
+      this.setState({ searchTerm, activePage })
+    } else if (window.location.pathname.split('/')) {
+      //unsplash does not return page and total items nubers in this api 
+      // let activePage = window.location.search.split('=')[1];
+      let username = window.location.pathname.split('/')[2]
+      photographerProfileRequest({ username, per_page: photosPerPage })
+    } else {
+      console.log('err')
+    }
   }
 
   componentDidUpdate = (prevProps) => {
     const { photosPerPage } = this.state;
-    const { results, total, searchRequest } = this.props;
+    const { results, photographerProfile, total, searchRequest } = this.props;
     //MAKING REQUEST ON BACK OR FORWARD,each time params channging
-    if (prevProps.computedMatch.params.searcTerm !== this.props.computedMatch.params.searcTerm) {
+    if (prevProps.computedMatch && prevProps.computedMatch.params.searcTerm !== this.props.computedMatch.params.searcTerm) {
       let searchTerm = this.props.computedMatch.params.searcTerm;
       let activePage = window.location.search.split('=')[1];
       searchRequest({ query: searchTerm, page: +activePage, per_page: photosPerPage });
@@ -59,6 +70,11 @@ class ImagesList extends Component {
       this.setState({
         searchList: results,
         total
+      })
+    }
+    if (prevProps.photographerProfile !== this.props.photographerProfile) {
+      this.setState({
+        searchList: photographerProfile,
       })
     }
   }
@@ -120,10 +136,6 @@ class ImagesList extends Component {
     const { downloadApPhotoRequest } = this.props;
     downloadApPhotoRequest({ id })
   }
-  // likeAphoto = () => {
-  //   console.log('like');
-  //   window.location.replace(`https://unsplash.com/oauth/authorize?client_id=PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0&redirect_uri=https://unsplash.com&response_type=code`)
-  // }
   render() {
     const { isOpen, imgObj, userObj,
       activePage, photosPerPage, searchTerm, total } = this.state;
@@ -155,24 +167,9 @@ class ImagesList extends Component {
                       <div className='card-wrapper d-flex flex-wrap'>
                         <ImageCard
                           userData={user}
-                          // likes={likes}
-                          // regular={regular}
-                          // thumb={thumb}
-                          // profile_image={profile_image.small}
-                          // alt_description={alt_description}
                           imgData={{ likes, alt_description, description, regular }}
-                          // download={download}
-                          // download_location={download_location}
-                          // name={name}
-                          // userId={user.id}
-                          // location={location}
-                          // instagram_username={instagram_username}
-                          // username={username}
-                          // downloadImage={() => this.downloadImage(id)}
-                          // forceDownload={() => this.forceDownload(download)}
                           handleModalState={() => this.handleModalState(id, description, full, small, location, username, likes)}
                           downloadSelectedImage={() => this.downloadSelectedImage(id)}
-                        // likeAphoto={this.likeAphoto} 
                         />
                       </div>
                     </React.Fragment>
@@ -217,12 +214,12 @@ class ImagesList extends Component {
   }
 }
 
-const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pages }, listAllPhotos }) => ({
+const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pages }, photographerProfile }) => ({
   lang,
   results,
   total,
   total_pages,
-  listAllPhotos
+  photographerProfile
 })
 
-export default connect(mapStateToProps, { downloadApPhotoRequest, searchRequest })(ImagesList);
+export default connect(mapStateToProps, { downloadApPhotoRequest, searchRequest, photographerProfileRequest })(ImagesList);

@@ -9,7 +9,6 @@ const PhotogragherInfo = (props) => {
         <section className='info-wrapper'>
             <div className='row justify-content-center mx-0'>
                 <div className='col-md-2'>
-                {console.log(profile_image )}
                     {profile_image &&
                         <UserAvatar img={profile_image.large} size='large'/>
                     }

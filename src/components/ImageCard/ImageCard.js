@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ImageCard = (props) => {
   const { imgData:{regular, alt_description, likes}, userData,
-          userData:{id, name, username, instagram_username, profile_image:{small}},
+          userData:{ name, username, instagram_username, profile_image:{small}},
           handleModalState,
           downloadSelectedImage
            } = props;
@@ -39,7 +39,7 @@ const ImageCard = (props) => {
           </Link>
         }
         title={name}
-        subheader={instagram_username ? '@' + instagram_username : '@' + name}
+        subheader={'@' + username}
       />
       <CardMedia
         className={classes.media}
@@ -49,7 +49,7 @@ const ImageCard = (props) => {
       />
       <CardActions className='my-2 justify-content-between'>
         <div >
-        {/* <FavoriteIcon color='secondary' onClick={likeAphoto}/> */}
+        <FavoriteIcon color='secondary' />
         <span className='no-of-likes mx-2'>{likes}</span>
         </div>
         <div>

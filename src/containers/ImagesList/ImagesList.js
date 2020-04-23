@@ -23,8 +23,9 @@ class ImagesList extends Component {
       userObj: {
         profile_image: null,
         location: null,
-        name: null,
-        instagram_username: null
+        username:null,
+        // name: null,
+        // instagram_username: null
       },
       imgObj: {
         imgId: null,
@@ -74,7 +75,7 @@ class ImagesList extends Component {
 
   }
 
-  handleModalState = (imgId, img_description, imgUrl, profile_image, location, instagram_username, name, likes) => {
+  handleModalState = (imgId, img_description, imgUrl, profile_image, location, username, likes) => {
     const { isOpen } = this.state;
     !isOpen ?
       this.setState({
@@ -83,8 +84,7 @@ class ImagesList extends Component {
           ...this.state.userObj,
           profile_image,
           location,
-          instagram_username,
-          name
+          username
         },
         imgObj: {
           ...this.state.imgObj,
@@ -93,7 +93,7 @@ class ImagesList extends Component {
           imgUrl,
           likes
         }
-      }, () => { console.log(this.state) }) :
+      }) :
       this.setState({
         isOpen: false,
       })
@@ -145,7 +145,7 @@ class ImagesList extends Component {
               alt_description, 
               links: { download, download_location },
               user,
-              user: { profile_image:{small}, name, location, instagram_username} 
+              user: { profile_image:{small}, username, location, instagram_username} 
             }, index) => {
               return (
                 <React.Fragment key={index}>
@@ -158,18 +158,19 @@ class ImagesList extends Component {
                       // profile_image={profile_image.small}
                       // alt_description={alt_description}
                       imgData={{likes,alt_description,description,regular}}
-                      download={download}
-                      download_location={download_location}
+                      // download={download}
+                      // download_location={download_location}
                       // name={name}
                       // userId={user.id}
                       // location={location}
                       // instagram_username={instagram_username}
                       // username={username}
-                      downloadImage={() => this.downloadImage(id)}
-                      forceDownload={() => this.forceDownload(download)}
-                      handleModalState={() => this.handleModalState(id, description, full, small, location, instagram_username, name, likes)}
+                      // downloadImage={() => this.downloadImage(id)}
+                      // forceDownload={() => this.forceDownload(download)}
+                      handleModalState={() => this.handleModalState(id, description, full, small, location, username , likes)}
                       downloadSelectedImage={() => this.downloadSelectedImage(id)}
-                      likeAphoto={this.likeAphoto} />
+                      // likeAphoto={this.likeAphoto} 
+                      />
                   </div>
                 </React.Fragment>
               )

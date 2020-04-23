@@ -7,7 +7,7 @@ import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 import './ImageModal.scss';
 
 const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl, likes },
-    userObj: { profile_image, location, instagram_username, name },downloadSelectedImage }) => {
+    userObj: { profile_image, location, username }, downloadSelectedImage }) => {
     return (
         <Dialog
             fullWidth={true}
@@ -19,19 +19,14 @@ const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl, likes },
         >
             <DialogContent >
                 <div className='d-flex justify-content-between'>
-                   <div className='d-flex '>
-                   <UserAvatar img={profile_image} size='small'/>
-                    <p className='user-name m-2'>
-                        {
-                            instagram_username ? (
-                                '@' + instagram_username
-                            ) :
-                                (
-                                    '@' + name
-                                )
-                        }
-                    </p>
-                   </div>
+                    <div className='d-flex '>
+                        <UserAvatar img={profile_image} size='small' />
+                        <p className='user-name m-2'>
+                            {
+                                '@' + username
+                            }
+                        </p>
+                    </div>
                     <div>
                         <IconButton onClick={downloadSelectedImage} >
                             <SystemUpdateAltIcon className='download-icon' />
@@ -52,11 +47,13 @@ const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl, likes },
                             <span className='location mx-2'>
                                 {location}
                             </span>
-                            <p className='mt-2  no-of-likes' >
-                                <FavoriteIcon color='secondary' />
-                               <span className='mx-2'>{likes}</span> 
-                            </p>
                         </>
+                    }
+                    {likes &&
+                        <p className='mt-2  no-of-likes' >
+                            <FavoriteIcon color='secondary' />
+                            <span className='mx-2'>{likes}</span>
+                        </p>
                     }
                 </div>
             </DialogContent>

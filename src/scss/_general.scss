@@ -23,7 +23,7 @@ button:focus,input{
     color:$secondaryColor;
 }
 
-.download-icon:hover{
+.download-icon:hover, .share-icon:hover{
     fill:$primaryColor;
     font-size: 1.2em;
 }

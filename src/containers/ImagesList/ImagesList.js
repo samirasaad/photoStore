@@ -138,8 +138,8 @@ class ImagesList extends Component {
   }
   render() {
     const { isOpen, imgObj, userObj,
-      activePage, photosPerPage, searchTerm, total } = this.state;
-    const { searchList } = this.state;
+      activePage, photosPerPage, searchTerm, total,searchList } = this.state;
+    const { url } = this.props;
     return (
       <>
         <div>
@@ -167,7 +167,7 @@ class ImagesList extends Component {
                       <div className='card-wrapper d-flex flex-wrap'>
                         <ImageCard
                           userData={user}
-                          imgData={{ likes, alt_description, description, regular }}
+                          imgData={{ full,likes, alt_description, description, regular }}
                           handleModalState={() => this.handleModalState(id, description, full, small, location, username, likes)}
                           downloadSelectedImage={() => this.downloadSelectedImage(id)}
                         />
@@ -214,12 +214,14 @@ class ImagesList extends Component {
   }
 }
 
-const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pages }, photographerProfile }) => ({
+const mapStateToProps = ({ locale: { lang },
+   search: { results, total, total_pages }, 
+   photographerProfile}) => ({
   lang,
   results,
   total,
   total_pages,
-  photographerProfile
+  photographerProfile,
 })
 
 export default connect(mapStateToProps, { downloadApPhotoRequest, searchRequest, photographerProfileRequest })(ImagesList);

@@ -6,6 +6,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 import { Link } from 'react-router-dom';
 import './ImageCard.scss';
+import ShareDropDown from '../ShareDropDown/ShareDropDown';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,23 +20,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ImageCard = (props) => {
-  const { imgData:{regular, alt_description, likes}, userData,
-          userData:{ name, username, instagram_username, profile_image:{small}},
-          handleModalState,
-          downloadSelectedImage
-           } = props;
+  const { imgData: { full,regular, alt_description, likes }, userData,
+    userData: { name, username, profile_image: { small } },
+    handleModalState,
+    downloadSelectedImage
+  } = props;
   const classes = useStyles();
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Link 
-          to={{
-            pathname:`/profile/${username}`,
-            state:{userData}
-          }}
+          <Link
+            to={{
+              pathname: `/profile/${username}`,
+              state: { userData }
+            }}
           >
-            <UserAvatar img={small} size='small'/>
+            <UserAvatar img={small} size='small' />
           </Link>
         }
         title={name}
@@ -49,13 +50,14 @@ const ImageCard = (props) => {
       />
       <CardActions className='my-2 justify-content-between'>
         <div >
-        <FavoriteIcon color='secondary' />
-        <span className='no-of-likes mx-2'>{likes}</span>
+          <FavoriteIcon color='secondary' />
+          <span className='no-of-likes mx-2'>{likes}</span>
         </div>
-        <div>
-        <IconButton onClick={downloadSelectedImage} >
-          <SystemUpdateAltIcon className='download-icon' />
-        </IconButton>
+        <div className='d-flex'>
+          <ShareDropDown url={full}/>
+          <IconButton onClick={downloadSelectedImage} >
+            <SystemUpdateAltIcon className='download-icon' />
+          </IconButton>
         </div>
       </CardActions>
     </Card>

@@ -8,10 +8,10 @@ import { photographerProfileRequest } from './../../store/actions/photographerPr
 import Pagination from "react-js-pagination";
 import History from './../../routes/History';
 import SearchInput from '../../components/SearchInput/SearchInput';
-import SimpleSlider from './../Slider/Slider';
+import SimpleSlider from './../../components/Slider/Slider';
 import noDataFound from './../../assets/images/noDataFound.jpg';
 import { featuredCollections } from './../../utils/Constants';
-import { getCollectionImages } from './../../utils/shared';
+// import { getCollectionImages } from './../../utils/shared';
 import './ImagesList.scss';
 
 class ImagesList extends Component {
@@ -73,6 +73,7 @@ class ImagesList extends Component {
     }
   }
   componentDidMount = () => {
+    console.log('didmount')
     const { photosPerPage } = this.state;
     const { searchRequest, photographerProfileRequest } = this.props;
     //coming with search term from home or  from photographer profile
@@ -102,15 +103,15 @@ class ImagesList extends Component {
       this.setState({ searchTerm, activePage })
     }
     if (prevProps.results !== this.props.results || prevProps.total !== this.props.total) {
-      this.setState({
-        searchList: results,
-        total
-      })
+          this.setState({
+            searchList: results,
+            total
+          })
     }
     if (prevProps.photographerProfile !== this.props.photographerProfile) {
-      this.setState({
-        searchList: photographerProfile,
-      })
+        this.setState({
+          searchList: photographerProfile,
+        })
     }
   }
 
@@ -171,6 +172,16 @@ class ImagesList extends Component {
     const { downloadApPhotoRequest } = this.props;
     downloadApPhotoRequest({ id })
   }
+  
+  getCollectionData = (collection) => {
+    const {photosPerPage} = this.state;
+    Promise.resolve(
+      searchRequest({ query: collection, page: 1, per_page: photosPerPage })
+    ).then(
+      History.push(`/imagesList/${collection}?page=1`)
+    )
+  }
+
   render() {
     const { isOpen, imgObj, userObj,
       activePage, photosPerPage, searchTerm, total, searchList, SliderSettings } = this.state;
@@ -179,7 +190,7 @@ class ImagesList extends Component {
       <>
         <div>
           <SimpleSlider
-            handleClick={getCollectionImages}
+            handleClick={this.getCollectionData}
             list={featuredCollections}
             SliderSettings={SliderSettings}
           />

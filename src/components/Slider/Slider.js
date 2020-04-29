@@ -7,11 +7,11 @@ import './Slider.scss';
 const SimpleSlider = ({ list, SliderSettings, handleClick }) => {
     const renderSlides = () => {
         return (
-            list.map((collection, index) => {
+            list.map((col, index) => {
                 return (
-                    <div id={collection} key={index}
-                        onClick={() => handleClick(collection)}>
-                        {collection}
+                    <div id={col} key={index}
+                        onClick={(e) => handleClick(col)}>
+                        {col}
                     </div>
                 )
             })

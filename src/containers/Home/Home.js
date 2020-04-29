@@ -4,15 +4,16 @@ import SearchInput from '../../components/SearchInput/SearchInput';
 import { searchRequest } from './../../store/actions/search';
 import ImagesList from '../ImagesList/ImagesList';
 import History from './../../routes/History';
-import SimpleSlider from './../Slider/Slider';
+import SimpleSlider from './../../components/Slider/Slider';
 import { featuredCollections } from './../../utils/Constants';
-import { getCollectionImages } from './../../utils/shared';
+// import { getCollectionImages } from './../../utils/shared';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchTerm: '',
+      photosPerPage:25,
       SliderSettings: {
         dots: false,
         infinite: true,
@@ -101,6 +102,10 @@ class Home extends Component {
       })
     )
   }
+  
+  getCollectionData = (collection) => {
+      History.push(`/imagesList/${collection}?page=1`)
+  }
 
   render() {
     const { searchList, activePage, photosPerPage, searchTerm, SliderSettings } = this.state;
@@ -108,7 +113,7 @@ class Home extends Component {
     return (
       <section className='min-vh-100'>
         <SimpleSlider
-          handleClick={getCollectionImages}
+          handleClick={this.getCollectionData}
           list={featuredCollections}
           SliderSettings={SliderSettings}
         />

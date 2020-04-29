@@ -1,7 +1,10 @@
-// @media screen and (max-width:768px){
-//     .info-wrapper {
-//         .profile-img{
-//             min-width:100%
-//         }
-//     }
-// }
+@media screen and (max-width:768px){
+    .info-wrapper {
+        .info-part{
+            align-items:center;
+            p{
+                text-align: center;
+            }
+        }
+    }
+}

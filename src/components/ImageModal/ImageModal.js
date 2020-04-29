@@ -4,6 +4,7 @@ import PinDropIcon from '@material-ui/icons/PinDrop';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
+import ShareDropDown from '../ShareDropDown/ShareDropDown';
 import './ImageModal.scss';
 
 const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl, likes },
@@ -27,7 +28,8 @@ const ImageModal = ({ isOpen, handleModalState, imgObj: { imgUrl, likes },
                             }
                         </p>
                     </div>
-                    <div>
+                    <div className='d-flex'>
+                        <ShareDropDown url={imgUrl} />
                         <IconButton onClick={downloadSelectedImage} >
                             <SystemUpdateAltIcon className='download-icon' />
                         </IconButton>

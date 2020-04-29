@@ -203,7 +203,7 @@ class ImagesList extends Component {
           </div>
           {
             searchList.length > 0 ?
-              <div className='d-flex flex-row flex-wrap'>
+              <div className='row mx-0'>
                 {searchList.map(({
                   id,
                   urls: { full, regular, thumb },
@@ -216,7 +216,7 @@ class ImagesList extends Component {
                 }, index) => {
                   return (
                     <React.Fragment key={index}>
-                      <div className='card-wrapper d-flex flex-wrap'>
+                      <div className='card-wrapper col-lg-3 px-2 mb-4'>
                         <ImageCard
                           userData={user}
                           imgData={{ full, likes, alt_description, description, regular }}

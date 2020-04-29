@@ -9,10 +9,6 @@ import './ImageCard.scss';
 import ShareDropDown from '../ShareDropDown/ShareDropDown';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 22 + 'em',
-    margin: 10
-  },
   media: {
     height: 16 + 'em',
     paddingTop: '56.25%'

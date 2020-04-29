@@ -15,10 +15,10 @@ const PhotogragherInfo = (props) => {
                 </div>
                 <div className='col-md-5 mt-3 d-flex flex-column info-part'>
                     <h3 className='font-weight-bold'>{first_name + '-' + last_name}</h3>
-                    <span className='text-muted'>
+                    {location && <span className='text-muted'>
                         <PinDropIcon color='secondary' />
                         {location}
-                    </span>
+                    </span>}
                     <p className='my-4'>{bio}</p>
                 </div>
             </div>

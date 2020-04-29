@@ -14,7 +14,7 @@ class Home extends Component {
     super(props);
     this.state = {
       searchTerm: '',
-      photosPerPage:25,
+      photosPerPage: 25,
       SliderSettings: {
         dots: false,
         infinite: true,
@@ -72,7 +72,7 @@ class Home extends Component {
   }
 
   getCollectionData = (collection) => {
-      History.push(`/imagesList/${collection}?page=1`)
+    History.push(`/imagesList/${collection}?page=1`)
   }
 
   render() {
@@ -80,16 +80,21 @@ class Home extends Component {
     return (
       <section className='home-wrapper'>
         <div className='wrapper container-fluid p-5 '>
-        <SimpleSlider
-          handleClick={this.getCollectionData}
-          list={featuredCollections}
-          SliderSettings={SliderSettings}
-        />
+          <SimpleSlider
+            handleClick={this.getCollectionData}
+            list={featuredCollections}
+            SliderSettings={SliderSettings}
+          />
         </div>
         <div className='search-input-holder'>
-        <SearchInput handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit} valuse={searchTerm}
-        />
+          <div className='row mx-0'>
+            <h3 className='col-10 offset-2 pl-0 pr-5 text-white font-weight-bold'>
+              Photography takes an instant out of time altering life by holding it still
+          </h3>
+          </div>
+          <SearchInput handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit} valuse={searchTerm}
+          />
         </div>
       </section>
     )
@@ -100,4 +105,4 @@ const mapStateToProps = ({ locale: { lang } }) => ({
   lang,
 })
 
-export default connect(mapStateToProps,{searchRequest})(Home);
+export default connect(mapStateToProps, { searchRequest })(Home);

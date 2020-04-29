@@ -1,5 +1,15 @@
 @import '../../scss/variables';
-.wrapper{
+.home-wrapper{
+    height:82.9vh;
+    background-image: url('./../../assets/images/home-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+     .search-input-holder {
+        width: 100%;
+        position: absolute;
+        bottom: 50%;
+    }
+    .wrapper{
         min-height:100px;
         .slick-track{
          margin-top:10px
@@ -15,4 +25,5 @@
             text-transform: lowercase;
             cursor: pointer;
         }
+    }    
 }

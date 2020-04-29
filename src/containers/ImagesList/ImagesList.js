@@ -12,7 +12,7 @@ import SimpleSlider from './../../components/Slider/Slider';
 import noDataFound from './../../assets/images/noDataFound.jpg';
 import { featuredCollections } from './../../utils/Constants';
 // import { getCollectionImages } from './../../utils/shared';
-import './../Home/Home.scss';
+import './ImagesList.scss';
 
 class ImagesList extends Component {
   constructor(props) {
@@ -103,15 +103,15 @@ class ImagesList extends Component {
       this.setState({ searchTerm, activePage })
     }
     if (prevProps.results !== this.props.results || prevProps.total !== this.props.total) {
-          this.setState({
-            searchList: results,
-            total
-          })
+      this.setState({
+        searchList: results,
+        total
+      })
     }
     if (prevProps.photographerProfile !== this.props.photographerProfile) {
-        this.setState({
-          searchList: photographerProfile,
-        })
+      this.setState({
+        searchList: photographerProfile,
+      })
     }
   }
 
@@ -172,9 +172,9 @@ class ImagesList extends Component {
     const { downloadApPhotoRequest } = this.props;
     downloadApPhotoRequest({ id })
   }
-  
+
   getCollectionData = (collection) => {
-    const {photosPerPage} = this.state;
+    const { photosPerPage } = this.state;
     Promise.resolve(
       searchRequest({ query: collection, page: 1, per_page: photosPerPage })
     ).then(
@@ -188,17 +188,19 @@ class ImagesList extends Component {
     const { url } = this.props;
     return (
       <>
-        <div className='wrapper container-fluid'>
-          <SimpleSlider
-            handleClick={this.getCollectionData}
-            list={featuredCollections}
-            SliderSettings={SliderSettings}
-          />
-          <SearchInput handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit} value={searchTerm}
-          />
-        </div>
         <section className='image-list-wrapper container-fluid my-4 min-vh-100'>
+          <div className='wrapper container-fluid px-5'>
+            <SimpleSlider
+              handleClick={this.getCollectionData}
+              list={featuredCollections}
+              SliderSettings={SliderSettings}
+            />
+            <div className='pb-3'>
+              <SearchInput handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit} value={searchTerm}
+              />
+            </div>
+          </div>
           {
             searchList.length > 0 ?
               <div className='d-flex flex-row flex-wrap'>

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import { searchRequest } from './../../store/actions/search';
-import ImagesList from '../ImagesList/ImagesList';
 import History from './../../routes/History';
 import SimpleSlider from './../../components/Slider/Slider';
 import { featuredCollections } from './../../utils/Constants';
+// import {HomeBg} from './../../assets/images/home-bg.jpg'
 // import { getCollectionImages } from './../../utils/shared';
 import './Home.scss'
 
@@ -48,41 +48,8 @@ class Home extends Component {
           }
         ]
       }
-      // searchList: [],
-      // activePage: 1,
-      // photosPerPage: 20,
     }
   }
-  componentDidMount = () => {
-    // const {activePage, photosPerPage} =this.state
-    // History.push({
-    //   search: `?page=1`
-    // });
-  }
-  // componentDidUpdate = (prevProps) => {
-  //   const { results } = this.props;
-  //   if (prevProps.results !== this.props.results ) {
-  //     console.log('search')
-  //     this.setState({
-  //       searchList: results
-  //     })
-  //   }
-  // }
-
-
-  // handlePageChange = (pageNumber) => {
-  //   const { searchRequest } = this.props;
-  //   const { activePage } = this.state;
-  //   this.setState({ activePage: pageNumber }, () => {
-  //     const { searchTerm, activePage, photosPerPage } = this.state;
-  //     Promise.resolve(
-  //       searchRequest({ query: searchTerm, page: activePage, per_page: photosPerPage })
-  //     ).then(History.push({
-  //       search: `?page=${activePage}`
-  //     }))
-  //   });
-
-  // }
 
   handleChange = (e) => {
     this.setState({
@@ -109,41 +76,28 @@ class Home extends Component {
   }
 
   render() {
-    const { searchList, activePage, photosPerPage, searchTerm, SliderSettings } = this.state;
-    const { total } = this.props;
+    const { searchTerm, SliderSettings } = this.state;
     return (
-      <section className='wrapper min-vh-100'>
-        <div className='container-fluid'>
+      <section className='home-wrapper'>
+        <div className='wrapper container-fluid p-5 '>
         <SimpleSlider
           handleClick={this.getCollectionData}
           list={featuredCollections}
           SliderSettings={SliderSettings}
         />
         </div>
+        <div className='search-input-holder'>
         <SearchInput handleChange={this.handleChange}
           handleSubmit={this.handleSubmit} valuse={searchTerm}
         />
-        {/* {searchList.length > 0 && */}
-        <>
-          {/* <ImagesList searchList={ searchList } /> */}
-
-        </>
-        {/* } */}
+        </div>
       </section>
     )
   }
 }
 
-const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pages }, listAllPhotos }) => ({
+const mapStateToProps = ({ locale: { lang } }) => ({
   lang,
-  // results,
-  // total,
-  // total_pages,
-  // listAllPhotos
 })
 
-export default connect(mapStateToProps,
-  {
-    searchRequest
-  })
-  (Home);
+export default connect(mapStateToProps,{searchRequest})(Home);

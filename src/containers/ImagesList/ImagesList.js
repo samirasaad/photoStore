@@ -9,7 +9,9 @@ import Pagination from "react-js-pagination";
 import History from './../../routes/History';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import SimpleSlider from './../Slider/Slider';
-import noDataFound from './../../assets/images/noDataFound.jpg'
+import noDataFound from './../../assets/images/noDataFound.jpg';
+import { featuredCollections } from './../../utils/Constants';
+import { getCollectionImages } from './../../utils/shared';
 import './ImagesList.scss';
 
 class ImagesList extends Component {
@@ -21,6 +23,39 @@ class ImagesList extends Component {
       photosPerPage: 20,
       searchList: [],
       searchTerm: '',
+      SliderSettings: {
+        dots: false,
+        infinite: true,
+        speed: 100,
+        slidesToShow: 8,
+        slidesToScroll: 2,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              // initialSlide: 3
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      },
       total: null,
       userObj: {
         profile_image: null,
@@ -138,12 +173,16 @@ class ImagesList extends Component {
   }
   render() {
     const { isOpen, imgObj, userObj,
-      activePage, photosPerPage, searchTerm, total,searchList } = this.state;
+      activePage, photosPerPage, searchTerm, total, searchList, SliderSettings } = this.state;
     const { url } = this.props;
     return (
       <>
         <div>
-          <SimpleSlider />
+          <SimpleSlider
+            handleClick={getCollectionImages}
+            list={featuredCollections}
+            SliderSettings={SliderSettings}
+          />
           <SearchInput handleChange={this.handleChange}
             handleSubmit={this.handleSubmit} value={searchTerm}
           />
@@ -167,7 +206,7 @@ class ImagesList extends Component {
                       <div className='card-wrapper d-flex flex-wrap'>
                         <ImageCard
                           userData={user}
-                          imgData={{ full,likes, alt_description, description, regular }}
+                          imgData={{ full, likes, alt_description, description, regular }}
                           handleModalState={() => this.handleModalState(id, description, full, small, location, username, likes)}
                           downloadSelectedImage={() => this.downloadSelectedImage(id)}
                         />
@@ -215,13 +254,13 @@ class ImagesList extends Component {
 }
 
 const mapStateToProps = ({ locale: { lang },
-   search: { results, total, total_pages }, 
-   photographerProfile}) => ({
-  lang,
-  results,
-  total,
-  total_pages,
-  photographerProfile,
-})
+  search: { results, total, total_pages },
+  photographerProfile }) => ({
+    lang,
+    results,
+    total,
+    total_pages,
+    photographerProfile,
+  })
 
 export default connect(mapStateToProps, { downloadApPhotoRequest, searchRequest, photographerProfileRequest })(ImagesList);

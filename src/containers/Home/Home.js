@@ -5,12 +5,47 @@ import { searchRequest } from './../../store/actions/search';
 import ImagesList from '../ImagesList/ImagesList';
 import History from './../../routes/History';
 import SimpleSlider from './../Slider/Slider';
+import { featuredCollections } from './../../utils/Constants';
+import { getCollectionImages } from './../../utils/shared';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchTerm: '',
+      SliderSettings: {
+        dots: false,
+        infinite: true,
+        speed: 100,
+        slidesToShow: 8,
+        slidesToScroll: 2,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              // initialSlide: 3
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      }
       // searchList: [],
       // activePage: 1,
       // photosPerPage: 20,
@@ -56,31 +91,35 @@ class Home extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { searchRequest } = this.props;
-    const { activePage, photosPerPage ,searchTerm} = this.state;
+    const { activePage, photosPerPage, searchTerm } = this.state;
     Promise.resolve(
       searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
     ).then(
-    History.push({
-      pathname:`/imagesList/${searchTerm}`,
-      search:`?page=1`,
-    })
+      History.push({
+        pathname: `/imagesList/${searchTerm}`,
+        search: `?page=1`,
+      })
     )
   }
 
   render() {
-    const { searchList, activePage, photosPerPage, searchTerm } = this.state;
+    const { searchList, activePage, photosPerPage, searchTerm, SliderSettings } = this.state;
     const { total } = this.props;
     return (
       <section className='min-vh-100'>
-        <SimpleSlider />
+        <SimpleSlider
+          handleClick={getCollectionImages}
+          list={featuredCollections}
+          SliderSettings={SliderSettings}
+        />
         <SearchInput handleChange={this.handleChange}
           handleSubmit={this.handleSubmit} valuse={searchTerm}
         />
         {/* {searchList.length > 0 && */}
         <>
-        {/* <ImagesList searchList={ searchList } /> */}
-          
-          </>
+          {/* <ImagesList searchList={ searchList } /> */}
+
+        </>
         {/* } */}
       </section>
     )
@@ -95,8 +134,8 @@ const mapStateToProps = ({ locale: { lang }, search: { results, total, total_pag
   // listAllPhotos
 })
 
-export default connect(mapStateToProps, 
-  { 
-  searchRequest 
-})
-(Home);
+export default connect(mapStateToProps,
+  {
+    searchRequest
+  })
+  (Home);

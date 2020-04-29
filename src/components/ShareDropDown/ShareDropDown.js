@@ -4,7 +4,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {
     FacebookIcon,
     LinkedinIcon,
-    PinterestIcon,
     TwitterIcon,
     WhatsappIcon,
 } from "react-share";
@@ -12,20 +11,18 @@ import {
 import {
     FacebookShareButton,
     LinkedinShareButton,
-    PinterestShareButton,
     TwitterShareButton,
     WhatsappShareButton
 } from "react-share";
 import { IconButton } from '@material-ui/core';
 import ShareIcon from '@material-ui/icons/Share';
-export default function ShareDropDown({url}) {
+export default function ShareDropDown({ url }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [ShareIcons, setShareIcons] = React.useState(
-        [<FacebookShareButton children={<FacebookIcon size={32} round={`true`} />} url={url}/>,
-         <LinkedinShareButton children={<LinkedinIcon size={32} round={`true`} />} url={url}/>,
-         <PinterestShareButton children={<PinterestIcon size={32} round={`true`}  />} url={url}/>,
-         <TwitterShareButton children={<TwitterIcon size={32} round={`true`}  />} url={url}/>,
-         <WhatsappShareButton children={<WhatsappIcon size={32} round={`true`}  />} url={url}/>
+    const [ShareButtons, setShareButtons] = React.useState(
+        [<FacebookShareButton children={<FacebookIcon size={32} round={`true`} />} url={url} />,
+        <LinkedinShareButton children={<LinkedinIcon size={32} round={`true`} />} url={url} />,
+        <TwitterShareButton children={<TwitterIcon size={32} round={`true`} />} url={url} />,
+        <WhatsappShareButton children={<WhatsappIcon size={32} round={`true`} />} url={url} />
         ]
     )
     const handleClick = (event) => {
@@ -47,10 +44,10 @@ export default function ShareDropDown({url}) {
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
-                {ShareIcons.map((icon, index) => {
+                {ShareButtons.map((button, index) => {
                     return (
                         <MenuItem onClick={handleClose} key={index}>
-                            {icon}
+                            {button}
                         </MenuItem>
                     )
                 })

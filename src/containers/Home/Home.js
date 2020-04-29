@@ -7,6 +7,7 @@ import History from './../../routes/History';
 import SimpleSlider from './../../components/Slider/Slider';
 import { featuredCollections } from './../../utils/Constants';
 // import { getCollectionImages } from './../../utils/shared';
+import './Home.scss'
 
 class Home extends Component {
   constructor(props) {
@@ -102,7 +103,7 @@ class Home extends Component {
       })
     )
   }
-  
+
   getCollectionData = (collection) => {
       History.push(`/imagesList/${collection}?page=1`)
   }
@@ -111,12 +112,14 @@ class Home extends Component {
     const { searchList, activePage, photosPerPage, searchTerm, SliderSettings } = this.state;
     const { total } = this.props;
     return (
-      <section className='min-vh-100'>
+      <section className='wrapper min-vh-100'>
+        <div className='container-fluid'>
         <SimpleSlider
           handleClick={this.getCollectionData}
           list={featuredCollections}
           SliderSettings={SliderSettings}
         />
+        </div>
         <SearchInput handleChange={this.handleChange}
           handleSubmit={this.handleSubmit} valuse={searchTerm}
         />

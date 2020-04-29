@@ -12,7 +12,7 @@ import SimpleSlider from './../../components/Slider/Slider';
 import noDataFound from './../../assets/images/noDataFound.jpg';
 import { featuredCollections } from './../../utils/Constants';
 // import { getCollectionImages } from './../../utils/shared';
-import './ImagesList.scss';
+import './../Home/Home.scss';
 
 class ImagesList extends Component {
   constructor(props) {
@@ -188,7 +188,7 @@ class ImagesList extends Component {
     const { url } = this.props;
     return (
       <>
-        <div>
+        <div className='wrapper container-fluid'>
           <SimpleSlider
             handleClick={this.getCollectionData}
             list={featuredCollections}

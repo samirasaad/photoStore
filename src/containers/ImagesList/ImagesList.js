@@ -216,7 +216,7 @@ class ImagesList extends Component {
                 }, index) => {
                   return (
                     <React.Fragment key={index}>
-                      <div className='card-wrapper col-lg-3 px-2 mb-4'>
+                      <div className='card-wrapper col-lg-3 col-md-4 col-sm-6 px-2 mb-4'>
                         <ImageCard
                           userData={user}
                           imgData={{ full, likes, alt_description, description, regular }}

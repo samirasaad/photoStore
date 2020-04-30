@@ -1,0 +1,7 @@
+@import './../../scss/variables';
+.tabs-wrapper{
+    .MuiAppBar-colorPrimary{
+        color:$primaryColor;
+        background-color:#f0f0f0;  
+  }
+}

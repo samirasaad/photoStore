@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PhotogragherInfo from '../../components/PhotogragherInfo/PhotogragherInfo'
 import ImagesList from '../ImagesList/ImagesList'
+import ProfileTabs from './../../components/Tabs/Tabs'
 
 class PhotgrapherProfile extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ class PhotgrapherProfile extends Component {
         return (
             <section className='min-vh-100'>
                 <PhotogragherInfo userInfo={userInfo} />
-                <ImagesList />
+                {/* <ImagesList /> */}
+                <ProfileTabs />
             </section>
         )
     }

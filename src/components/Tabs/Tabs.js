@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import ImagesList from '../../containers/ImagesList/ImagesList';
 import './Tabs.scss'
+import ImagesHolder from '../../containers/ImagesHolder/ImagesHolder';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -52,13 +53,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProfileTabs() {
+export default function ProfileTabs({photos}) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const panels = [
-    <ImagesList />,
-    <ImagesList />,
-    'collection'
+    <ImagesHolder list={photos} />,
+    // <ImagesList />,
+    // 'collection'
   ]
   const handleChange = (event, newValue) => {
     setValue(newValue);

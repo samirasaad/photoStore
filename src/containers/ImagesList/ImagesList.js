@@ -95,7 +95,7 @@ class ImagesList extends Component {
     // }
 
     const { photosPerPage } = this.state;
-    const { searchRequest, photographerProfileRequest } = this.props;
+    const { searchRequest } = this.props;
     if (this.props.computedMatch && this.props.computedMatch.params.hasOwnProperty('searcTerm')) {
       let searchTerm = this.props.computedMatch.params.searcTerm;
       let activePage = window.location.search.split('=')[1];
@@ -105,7 +105,7 @@ class ImagesList extends Component {
   }
     componentDidUpdate = (prevProps) => {
       const { photosPerPage } = this.state;
-      const { results, photographerProfile, total, searchRequest } = this.props;
+      const { results, total, searchRequest } = this.props;
       //MAKING REQUEST ON BACK OR FORWARD,each time params channging
       if (prevProps.computedMatch && prevProps.computedMatch.params.searcTerm !== this.props.computedMatch.params.searcTerm) {
         let searchTerm = this.props.computedMatch.params.searcTerm;
@@ -235,4 +235,4 @@ class ImagesList extends Component {
       photographerProfile,
     })
 
-  export default connect(mapStateToProps, { downloadApPhotoRequest, searchRequest, photographerProfileRequest })(ImagesList);
+  export default connect(mapStateToProps, { downloadApPhotoRequest, searchRequest })(ImagesList);

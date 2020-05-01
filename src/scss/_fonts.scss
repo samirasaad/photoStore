@@ -1,1 +1,12 @@
 /* ============= Import your fonts here ============= */
+@each $fontFamily in $fontFamilies {
+    @each $fontExtention in $fontExtentions{
+        @font-face {
+            font-family: #{$fontFamily};
+            src: url('../assets/fonts/Indie_Flower/#{$fontFamily}.#{$fontExtention}');
+        }
+        .#{$fontFamily}{
+            font-family:  #{$fontFamily};
+        }
+    }
+}

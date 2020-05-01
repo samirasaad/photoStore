@@ -9,7 +9,7 @@ const SimpleSlider = ({ list, SliderSettings, handleClick }) => {
         return (
             list.map((col, index) => {
                 return (
-                    <div id={col} key={index}
+                    <div id={col} key={index} className='font-weight-bold'
                         onClick={(e) => handleClick(col)}>
                         {col}
                     </div>

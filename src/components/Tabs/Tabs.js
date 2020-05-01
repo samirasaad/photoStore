@@ -56,7 +56,9 @@ export default function ProfileTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const panels = [
-    <ImagesList />
+    <ImagesList />,
+    <ImagesList />,
+    'collection'
   ]
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -69,7 +71,7 @@ export default function ProfileTabs() {
           {
             tabsHeading.map((heading, index) => {
               return (
-                <Tab key={index} label={heading.label} id={heading.id} />
+                <Tab key={index} label={heading.label} id={heading.id} onClick={heading.route} />
               )
             })
           }
@@ -81,9 +83,6 @@ export default function ProfileTabs() {
           {panel}
         </TabPanel>)
       })}
-      {/* <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel> */}
     </div>
   );
 }

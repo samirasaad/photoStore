@@ -73,7 +73,6 @@ class ImagesList extends Component {
     }
   }
   componentDidMount = () => {
-    console.log('didmount')
     const { photosPerPage } = this.state;
     const { searchRequest, photographerProfileRequest } = this.props;
     //coming with search term from home or  from photographer profile
@@ -82,11 +81,14 @@ class ImagesList extends Component {
       let activePage = window.location.search.split('=')[1];
       searchRequest({ query: searchTerm, page: +activePage, per_page: photosPerPage });
       this.setState({ searchTerm, activePage })
-    } else if (window.location.pathname.split('/')) {
-      //unsplash does not return page and total items nubers in this api 
-      // let activePage = window.location.search.split('=')[1];
-      let username = window.location.pathname.split('/')[2]
-      photographerProfileRequest({ username, per_page: photosPerPage })
+    } else if (window.location.pathname.split('/').length > 1) {
+      if (window.location.pathname.split('/')[2] === 'photos') {
+        //unsplash does not return page and total items numbers in this api 
+        let username = window.location.pathname.split('/')[3]
+        photographerProfileRequest({ username, per_page: photosPerPage })
+      }else if(window.location.pathname.split('/')[2] === 'likes'){
+console.log('likes')
+      }
     } else {
       console.log('err')
     }

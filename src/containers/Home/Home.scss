@@ -1,15 +1,15 @@
 @import '../../scss/variables';
 .home-wrapper{
-    min-height:90vh;
+    height: 90vh;
     background-image: url('./../../assets/images/home-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
      .search-input-holder {
         width: 100%;
         position: absolute;
-        h3{
-            font-size:1em;
-        }
+       h2{
+           font-size:3em;
+       }
     }
     .wrapper{
         min-height:100px;
@@ -28,4 +28,14 @@
             cursor: pointer;
         }
     }    
+}
+
+@media screen and(max-width:768px){
+.home-wrapper{
+    .search-input-holder {
+        h2{
+            font-size:1em !important;
+        }
+    }
+  }
 }

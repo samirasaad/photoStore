@@ -1,9 +1,10 @@
 @import '../../scss/variables';
 .home-wrapper{
     height: 90vh;
-    background-image: url('./../../assets/images/home-bg.jpg');
+    background-image: url('./../../assets/images/image (18).jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    filter:grayscale(0.4);
      .search-input-holder {
         width: 100%;
         position: absolute;

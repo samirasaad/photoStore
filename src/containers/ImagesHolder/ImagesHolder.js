@@ -12,8 +12,6 @@ class ImagesHolder extends Component {
         super(props);
         this.state = {
             isOpen: false,
-            activePage: 1,
-            photosPerPage: 20,
             searchList: [],
             total: null,
             userObj: {
@@ -62,9 +60,8 @@ class ImagesHolder extends Component {
 
 
     render() {
-        const { isOpen, imgObj, userObj,
-            activePage, photosPerPage } = this.state;
-        const { list, total } = this.props;
+        const { isOpen, imgObj, userObj } = this.state;
+        const { list } = this.props;
         return (
             <>
                 <section>
@@ -104,22 +101,6 @@ class ImagesHolder extends Component {
                                 backgroundPosition: `center`
                             }}></div>
                     }
-                    {/* {list.length > 0 && total > 0 &&
-                        <div className='my-4 w-100'>
-                            <Pagination
-                                className='justify-content-center'
-                                itemClass="page-item"
-                                linkClass="page-link"
-                                activePage={+activePage}
-                                itemsCountPerPage={photosPerPage}
-                                totalItemsCount={total}
-                                pageRangeDisplayed={5}
-                                onChange={this.handlePageChange}
-                                prevPageText='Prev'
-                                nextPageText='Next'
-                            />
-                        </div>
-                    } */}
                     <ImageModal isOpen={isOpen}
                         handleModalState={this.handleModalState}
                         downloadSelectedImage={() => this.downloadSelectedImage(imgObj.imgId)}
@@ -132,4 +113,4 @@ class ImagesHolder extends Component {
     }
 }
 
-export default connect(null, {downloadApPhotoRequest})(ImagesHolder);
+export default connect(null, { downloadApPhotoRequest })(ImagesHolder);

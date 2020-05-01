@@ -88,9 +88,9 @@ class Home extends Component {
         </div>
         <div className='search-input-holder'>
           <div className='row mx-0'>
-            <h3 className='col-10 offset-2 pl-0 pr-5 text-white font-weight-bold'>
-              Photography takes an instant out of time altering life by holding it still
-          </h3>
+            <div className='col-9 offset-2 pl-0 pr-5 text-white font-weight-bold'>
+             <h2 className='w-75 my-2'> ``Photography takes an instant out of time altering life by holding it still``</h2>
+          </div>
           </div>
           <SearchInput handleChange={this.handleChange}
             handleSubmit={this.handleSubmit} valuse={searchTerm}

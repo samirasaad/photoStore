@@ -1,7 +1,18 @@
 import React from 'react';
+import NotFoundBg from './../../assets/images/404_page_not_found.jpg';
 const NotFound = () =>{
     return(
-        <span>not found </span>
+        <section style={{backgroundColor:'#fafafa'}}>
+            <div style={{
+            width:'70%',
+            margin:'0 auto',
+            minHeight:'90vh',
+            backgroundImage:`url(${NotFoundBg})`,
+            backgroundSize:'contain',
+            backgroundRepeat:'no-reapeat',
+            backgroundPosition:'center'
+        }}></div>
+        </section>
     )
 }
 

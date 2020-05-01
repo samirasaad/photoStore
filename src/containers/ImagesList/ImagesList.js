@@ -234,7 +234,7 @@ console.log('likes')
               :
               <div style={{
                 backgroundImage: `url(${noDataFound})`,
-                minHeight: `50em`,
+                minHeight: `25em`,
                 backgroundSize: `contain`,
                 backgroundRepeat: `no-repeat`,
                 backgroundPosition: `center`

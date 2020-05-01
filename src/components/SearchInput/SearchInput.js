@@ -5,7 +5,7 @@ const SearchInput = ({ handleChange,handleSubmit,value }) => {
     return (
         <>
             <form onSubmit={handleSubmit} className='form-wrapper  mt-2 text-center'>
-                <div className='position-relative input-holder'>
+                <div className='position-relative input-holder '>
                  <input className=' search-input'
                   placeholder='Search for a photo'
                   onChange={handleChange}

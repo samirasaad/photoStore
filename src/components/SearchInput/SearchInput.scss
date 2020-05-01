@@ -1,8 +1,10 @@
 @import './../../scss/variables';
 .form-wrapper{
     .input-holder{
+        width: 70%;
+        margin: 0 auto;
         .search-input{
-            width:70%;
+            width:100%;
             padding: 1em;
             border-radius: 1em;
             border:1px solid #dfdfdf;
@@ -20,5 +22,13 @@
             ::placeholder{
                 color:white
             }
+    }
+}
+
+@media screen and (max-width:768px){
+    .form-wrapper{
+        .input-holder{
+            width: 98%;
+        }
     }
 }

@@ -4,21 +4,15 @@ import history from '../routes/History';
 import Routes from '../routes/Routes';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import messages from '../assets/Local/messages';
 import Navbar from "../components/Navbar/Navbar";
 import Loader from "../components/Loader/Loader";
-
-// ========== General styles ==========
 import './App.scss';
 import Footer from '../components/Footer/Footer';
 class App extends Component {
   render() {
-    const { lang, loading } = this.props;
+    const { loading } = this.props;
     return (
-      <IntlProvider
-        locale={lang}
-        messages={messages[lang]}>
-        <div className={lang === 'ar' ? 'rtl' : 'ltr'} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+        <div >
         {loading ? <Loader /> : null}
           <Router history={history}>
             <Navbar />
@@ -26,12 +20,10 @@ class App extends Component {
             <Footer />
           </Router>
         </div>
-      </IntlProvider>
     );
   }
 }
-const mapStateToProps = ({ locale: { lang }, loader }) => ({
-  lang: lang,
-  loader: loader,
+const mapStateToProps = ({ loader }) => ({
+  loader
 })
 export default connect(mapStateToProps)(App);

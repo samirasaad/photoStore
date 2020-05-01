@@ -21,7 +21,7 @@ const SimpleSlider = ({ list, SliderSettings, handleClick }) => {
     return (
         <section className='slider-wrapper '>
             <Slider {...SliderSettings}>
-                {list && list.length > 0 && renderSlides()}
+                {(list && list.length > 0) && renderSlides()}
             </Slider>
         </section>
     );

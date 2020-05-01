@@ -8,15 +8,8 @@ import  App  from "./containers/App";
 import { useSelector } from "react-redux";
 
 function Theme() {
-  const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-  const  lang  = useSelector(state => state.locale.lang);
-  const [direction, setDirection] = useState(lang === 'en' ? 'ltr' : 'rtl');
-  useEffect(() => {
-    setDirection(lang === 'en' ? 'ltr' : 'rtl')
-  }, [lang])
   const theme = createMuiTheme(
       { 
-      direction : lang === 'en' ? 'ltr' : 'rtl',
       palette: {
         primary: {
             main : '#000000'
@@ -27,9 +20,8 @@ function Theme() {
       }
     }
     );
-    document.body.dir = direction;
   return (
-    <StylesProvider jss={jss}>
+    <StylesProvider >
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>

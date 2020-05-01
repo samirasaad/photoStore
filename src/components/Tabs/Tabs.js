@@ -5,9 +5,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import ImagesList from '../../containers/ImagesList/ImagesList';
-import './Tabs.scss'
 import ImagesHolder from '../../containers/ImagesHolder/ImagesHolder';
+import './Tabs.scss';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -53,13 +52,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProfileTabs({photos}) {
+const ProfileTabs = ({photos}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const panels = [
     <ImagesHolder list={photos} />,
-    // <ImagesList />,
-    // 'collection'
+    'likes',
+    'collections',
+    // <ImagesHolder list={photos} />,
+    // <ImagesHolder list={photos} />
   ]
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -67,7 +68,7 @@ export default function ProfileTabs({photos}) {
 
   return (
     <div className='tabs-wrapper'>
-      <AppBar position="static">
+      <AppBar position="static" className='my-4'>
         <Tabs value={value} onChange={handleChange} >
           {
             tabsHeading.map((heading, index) => {
@@ -80,10 +81,12 @@ export default function ProfileTabs({photos}) {
       </AppBar>
 
       {panels.map((panel, index) => {
-        return (<TabPanel key={index} value={value} index={0}>
+        return (<TabPanel key={index} value={value} index={index}>
           {panel}
         </TabPanel>)
       })}
     </div>
   );
 }
+
+export default ProfileTabs;

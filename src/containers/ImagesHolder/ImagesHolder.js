@@ -30,19 +30,6 @@ class ImagesHolder extends Component {
         }
     }
 
-    handlePageChange = (pageNumber) => {
-        const { searchRequest } = this.props;
-        this.setState({ activePage: pageNumber }, () => {
-            const { searchTerm, activePage, photosPerPage } = this.state;
-            Promise.resolve(
-                searchRequest({ query: searchTerm, page: activePage, per_page: photosPerPage })
-            ).then(History.push({
-                search: `?page=${activePage}`
-            }))
-        });
-
-    }
-
     handleModalState = (imgId, img_description, imgUrl, profile_image, location, username, likes) => {
         const { isOpen } = this.state;
         !isOpen ?
@@ -76,8 +63,8 @@ class ImagesHolder extends Component {
 
     render() {
         const { isOpen, imgObj, userObj,
-            activePage, photosPerPage, total } = this.state;
-        const { list } = this.props;
+            activePage, photosPerPage } = this.state;
+        const { list, total } = this.props;
         return (
             <>
                 <section>
@@ -117,7 +104,7 @@ class ImagesHolder extends Component {
                                 backgroundPosition: `center`
                             }}></div>
                     }
-                    {list.length > 0 && total > 0 &&
+                    {/* {list.length > 0 && total > 0 &&
                         <div className='my-4 w-100'>
                             <Pagination
                                 className='justify-content-center'
@@ -132,7 +119,7 @@ class ImagesHolder extends Component {
                                 nextPageText='Next'
                             />
                         </div>
-                    }
+                    } */}
                     <ImageModal isOpen={isOpen}
                         handleModalState={this.handleModalState}
                         downloadSelectedImage={() => this.downloadSelectedImage(imgObj.imgId)}

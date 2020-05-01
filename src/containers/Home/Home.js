@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SearchInput from '../../components/SearchInput/SearchInput';
-import { searchRequest } from './../../store/actions/search';
 import History from './../../routes/History';
 import SimpleSlider from './../../components/Slider/Slider';
+import SearchInput from '../../components/SearchInput/SearchInput';
+import { searchRequest } from './../../store/actions/search';
 import { featuredCollections } from './../../utils/Constants';
-// import {HomeBg} from './../../assets/images/home-bg.jpg'
-// import { getCollectionImages } from './../../utils/shared';
 import './Home.scss'
 
 class Home extends Component {
@@ -103,8 +101,4 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ locale: { lang } }) => ({
-  lang,
-})
-
-export default connect(mapStateToProps, { searchRequest })(Home);
+export default connect(null, { searchRequest })(Home);

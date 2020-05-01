@@ -19,10 +19,18 @@ import ShareIcon from '@material-ui/icons/Share';
 export default function ShareDropDown({ url }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [ShareButtons, setShareButtons] = React.useState(
-        [<FacebookShareButton children={<FacebookIcon size={32} round={`true`} />} url={url} />,
-        <LinkedinShareButton children={<LinkedinIcon size={32} round={`true`} />} url={url} />,
-        <TwitterShareButton children={<TwitterIcon size={32} round={`true`} />} url={url} />,
-        <WhatsappShareButton children={<WhatsappIcon size={32} round={`true`} />} url={url} />
+        [<FacebookShareButton 
+            children={<FacebookIcon size={32} round={`true`} />} url={url}
+         />,
+         <LinkedinShareButton 
+         children={<LinkedinIcon size={32} round={`true`} />} url={url} 
+         />,
+         <TwitterShareButton 
+         children={<TwitterIcon size={32} round={`true`} />} url={url} 
+         />,
+         <WhatsappShareButton 
+         children={<WhatsappIcon size={32} round={`true`} />} url={url} 
+         />
         ]
     )
     const handleClick = (event) => {

@@ -1,12 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { CardHeader, CardMedia, CardActions, Card, IconButton } from '@material-ui/core';
 import UserAvatar from './../../components/UserAvatar/UserAvatar';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
-import { Link } from 'react-router-dom';
-import './ImageCard.scss';
 import ShareDropDown from '../ShareDropDown/ShareDropDown';
+import './ImageCard.scss';
 
 const useStyles = makeStyles((theme) => ({
   media: {

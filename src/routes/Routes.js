@@ -11,7 +11,7 @@ const Routes = (
         <LazyComponent.Home path="/" exact />
         <LazyComponent.ImagesList path="/imagesList/:searcTerm" exact />
         <LazyComponent.PhotgrapherProfile path="/profile/:UserName" exact />
-        {/* <Redirect from="*" to="/" /> */}
+        <LazyComponent.NotFound path="" exact />
       </Switch>
     </Router>
   </Suspense>

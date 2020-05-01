@@ -9,7 +9,12 @@ import { useSelector } from "react-redux";
 
 function Theme() {
   const theme = createMuiTheme(
-      { 
+      {
+        typography: {
+          fontFamily: [
+            'PatrickHand-Regular'
+          ]
+      }, 
       palette: {
         primary: {
             main : '#000000'

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import PhotogragherInfo from '../../components/PhotogragherInfo/PhotogragherInfo'
-import ProfileTabs from './../../components/Tabs/Tabs'
-import SearchInput from '../../components/SearchInput/SearchInput'
-import { photographerProfileRequest } from './../../store/actions/photographerProfile';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import History from '../../routes/History';
+import { photographerProfileRequest } from './../../store/actions/photographerProfile';
+import PhotogragherInfo from '../../components/PhotogragherInfo/PhotogragherInfo';
+import ProfileTabs from './../../components/Tabs/Tabs';
+import SearchInput from '../../components/SearchInput/SearchInput';
 
 class PhotgrapherProfile extends Component {
     constructor(props) {
@@ -12,40 +12,7 @@ class PhotgrapherProfile extends Component {
         this.state = {
             userInfo: {},
             searchTerm: '',
-            photos: [],
-            SliderSettings: {
-                dots: false,
-                infinite: true,
-                speed: 100,
-                slidesToShow: 8,
-                slidesToScroll: 2,
-                responsive: [
-                    {
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            infinite: true,
-                            dots: true
-                        }
-                    },
-                    {
-                        breakpoint: 600,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            // initialSlide: 3
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
-            }
+            photos: []
         }
     }
 
@@ -74,22 +41,20 @@ class PhotgrapherProfile extends Component {
     }
 
 
-      handleSubmit = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault();
-        const { searchRequest } = this.props;
-        const { activePage, photosPerPage, searchTerm } = this.state;
+        const { searchTerm } = this.state;
         History.push({
-          pathname: `/ImagesList/${searchTerm}`,
-          search: `?page=1`
+            pathname: `/ImagesList/${searchTerm}`,
+            search: `?page=1`
         })
-        // searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
-      }
+    }
 
     render() {
-        const { userInfo, searchTerm, SliderSettings, photos } = this.state;
+        const { userInfo, searchTerm, photos } = this.state;
         return (
             <section className='min-vh-100'>
-                <div className='pb-3'>
+                <div className='pb-3 my-5'>
                     <SearchInput handleChange={this.handleChange}
                         handleSubmit={this.handleSubmit} value={searchTerm}
                     />

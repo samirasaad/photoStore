@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { downloadApPhotoRequest } from './../../store/actions/download';
 import ImageCard from '../../components/ImageCard/ImageCard';
 import ImageModal from '../../components/ImageModal/ImageModal';
 import Pagination from "react-js-pagination";
@@ -13,40 +15,6 @@ class ImagesHolder extends Component {
             activePage: 1,
             photosPerPage: 20,
             searchList: [],
-
-            SliderSettings: {
-                dots: false,
-                infinite: true,
-                speed: 100,
-                slidesToShow: 8,
-                slidesToScroll: 2,
-                responsive: [
-                    {
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            infinite: true,
-                            dots: true
-                        }
-                    },
-                    {
-                        breakpoint: 600,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 3,
-                            // initialSlide: 3
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
-            },
             total: null,
             userObj: {
                 profile_image: null,
@@ -177,4 +145,4 @@ class ImagesHolder extends Component {
     }
 }
 
-export default ImagesHolder;
+export default connect(null, {downloadApPhotoRequest})(ImagesHolder);

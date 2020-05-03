@@ -9,8 +9,8 @@ const NotFound = () =>{
             minHeight:'90vh',
             backgroundImage:`url(${NotFoundBg})`,
             backgroundSize:'contain',
-            backgroundRepeat:'no-reapeat',
-            backgroundPosition:'center'
+            backgroundRepeat  : 'no-repeat',
+            backgroundPosition: `center`
         }}></div>
         </section>
     )

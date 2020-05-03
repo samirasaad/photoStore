@@ -26,7 +26,6 @@ class Home extends Component {
               slidesToShow: 3,
               slidesToScroll: 3,
               infinite: true,
-              dots: true
             }
           },
           {
@@ -34,7 +33,6 @@ class Home extends Component {
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
-              // initialSlide: 3
             }
           },
           {
@@ -86,8 +84,8 @@ class Home extends Component {
         </div>
         <div className='search-input-holder'>
           <div className='row mx-0'>
-            <div className='col-9 offset-2 pl-0 pr-5 text-white font-weight-bold'>
-             <h2 className='w-75 my-2'> 
+            <div className='offset-lg-2 col-lg-7 px-0 px-sm-0 col-10 offset-1 text-white font-weight-bold'>
+             <h2 className='mx-0 mx-lg-4'> 
              Photography takes an instant out of time altering life by holding it still
              </h2>
           </div>

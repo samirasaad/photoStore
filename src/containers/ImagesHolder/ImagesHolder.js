@@ -96,8 +96,8 @@ class ImagesHolder extends Component {
                             <div style={{
                                 backgroundImage: `url(${noDataFound})`,
                                 minHeight: `25em`,
+                                backgroundRepeat  : 'no-repeat',
                                 backgroundSize: `contain`,
-                                backgroundRepeat: `no-repeat`,
                                 backgroundPosition: `center`
                             }}></div>
                     }

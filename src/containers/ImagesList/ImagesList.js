@@ -125,13 +125,13 @@ class ImagesList extends Component {
     return (
       <>
         <section className='image-list-wrapper container-fluid my-4 min-vh-100'>
-          <div className='wrapper container-fluid px-5'>
+          <div className='wrapper container-fluid'>
             <SimpleSlider
               handleClick={this.getCollectionData}
               list={featuredCollections}
               SliderSettings={SliderSettings}
             />
-            <div className='pb-3'>
+            <div className='pb-3 my-5'>
               <SearchInput handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit} value={searchTerm}
               />

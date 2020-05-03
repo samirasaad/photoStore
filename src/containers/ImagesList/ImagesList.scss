@@ -5,16 +5,19 @@
         .slick-track{
          margin-top:10px
         }
-        .slick-slide{
-            background-color: #f7f7f7;
-            border-radius: 14px;
+        .slick-slide > div{
             text-align: center;
-            margin: 0 2px 0 2px;
+            border-radius: 12px;
+            margin: 0 4px 0 6px;
             white-space: nowrap;
             overflow: hidden;
             padding: 8px;
             text-transform: lowercase;
             cursor: pointer;
-        }
-    }   
+            border: 1px solid black;
+            &:hover{
+                box-shadow: 0px 3px 15px -3px #698179;
+              }
+          }
+    }
 }

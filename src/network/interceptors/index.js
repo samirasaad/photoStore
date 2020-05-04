@@ -8,6 +8,7 @@ import store from './../../store';
 let acess_key = 'PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0';
 
 export const requestHandler = request => {
+  console.log(request);
   if (isHandlerEnabled(request)) {
      store.dispatch(loader(true));
      request.headers["Authorization"] = `Client-ID ${acess_key}`

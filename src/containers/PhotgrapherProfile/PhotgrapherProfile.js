@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import History from '../../routes/History';
 import { photographerProfileRequest, photographerLikesRequest, photographerCollectionsRequest } from './../../store/actions/photographerProfile';
 import PhotogragherInfo from '../../components/PhotogragherInfo/PhotogragherInfo';
-import ProfileTabs from './../../components/Tabs/Tabs';
+import ProfileTabs from './../../components/ProfileTabs/ProfileTabs';
 import SearchInput from '../../components/SearchInput/SearchInput';
 
 class PhotgrapherProfile extends Component {
@@ -12,7 +12,7 @@ class PhotgrapherProfile extends Component {
         this.state = {
             userInfo: {},
             searchTerm: '',
-            photographerProfile:[]
+            photographerProfile: []
         }
     }
 

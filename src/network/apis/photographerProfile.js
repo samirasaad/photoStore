@@ -7,8 +7,26 @@ const photographerProfile = async (params) => {
         handlerEnabled
     }
     );
-};
+}
+
+const photographerLikes = async (params) => {
+    return await axiosInstance.get(`/users/${params.username}/likes`, {
+        params,
+        handlerEnabled
+      }
+    );
+}
+
+const photographerCollections = async (params) => {
+    return await axiosInstance.get(`/users/${params.username}/collections`, {
+        params,
+        handlerEnabled
+      }
+    );
+}
 
 export default {
-    photographerProfile
+    photographerProfile,
+    photographerLikes,
+    photographerCollections
 };

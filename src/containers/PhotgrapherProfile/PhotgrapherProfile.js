@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import History from '../../routes/History';
-import { photographerProfileRequest } from './../../store/actions/photographerProfile';
+import { photographerProfileRequest, photographerLikesRequest, photographerCollectionsRequest } from './../../store/actions/photographerProfile';
 import PhotogragherInfo from '../../components/PhotogragherInfo/PhotogragherInfo';
 import ProfileTabs from './../../components/Tabs/Tabs';
 import SearchInput from '../../components/SearchInput/SearchInput';
@@ -12,24 +12,26 @@ class PhotgrapherProfile extends Component {
         this.state = {
             userInfo: {},
             searchTerm: '',
-            photos: []
+            photographerProfile:[]
         }
     }
 
     componentDidMount = () => {
-        const { photographerProfileRequest } = this.props;
+        const { photographerProfileRequest, photographerLikesRequest, photographerCollectionsRequest } = this.props;
         let userInfo = this.props.location.state.userData;
-        let username = window.location.pathname.split('/')[2]
+        let username = window.location.pathname.split('/')[2];
         this.setState({
             userInfo
         })
-        photographerProfileRequest({ username, per_page: 20 })
+        photographerProfileRequest({ username, per_page: 20 });
+        photographerLikesRequest({ username, per_page: 20 });
+        photographerCollectionsRequest({ username, per_page: 20 });
     }
 
     componentDidUpdate = (prevProps) => {
-        if (prevProps.photos !== this.props.photos) {
+        if (prevProps.photographerProfile !== this.props.photographerProfile) {
             this.setState({
-                photos: this.props.photos
+                photographerProfile: this.props.photographerProfile
             })
         }
     }
@@ -51,7 +53,7 @@ class PhotgrapherProfile extends Component {
     }
 
     render() {
-        const { userInfo, searchTerm, photos } = this.state;
+        const { userInfo, searchTerm, photographerProfile } = this.state;
         return (
             <section className='min-vh-100'>
                 <div className='pb-3 my-5'>
@@ -60,14 +62,18 @@ class PhotgrapherProfile extends Component {
                     />
                 </div>
                 <PhotogragherInfo userInfo={userInfo} />
-                <ProfileTabs photos={photos} />
+                <ProfileTabs photographerProfile={photographerProfile} />
             </section>
         )
     }
 }
 const mapStateToProps = ({ photographerProfile }) => ({
-    photos: photographerProfile,
+    photographerProfile
 })
 
 
-export default connect(mapStateToProps, { photographerProfileRequest })(PhotgrapherProfile)
+export default connect(mapStateToProps, {
+    photographerProfileRequest,
+    photographerLikesRequest,
+    photographerCollectionsRequest
+})(PhotgrapherProfile)

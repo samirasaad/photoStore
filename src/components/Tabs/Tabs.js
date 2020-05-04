@@ -52,15 +52,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfileTabs = ({photos}) => {
+const ProfileTabs = ({photographerProfile:{photos, likes, collections}}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const panels = [
     <ImagesHolder list={photos} />,
-    'likes',
-    'collections',
-    // <ImagesHolder list={photos} />,
-    // <ImagesHolder list={photos} />
+    <ImagesHolder list={likes} />
+    // <ImagesHolder list={collections} />//collections need new component
   ]
   const handleChange = (event, newValue) => {
     setValue(newValue);

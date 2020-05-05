@@ -35,12 +35,24 @@
     }    
 }
 
-@media screen and(max-width:768px){
-.home-wrapper{
-    .search-input-holder {
-        h2{
-            font-size:1em !important;
+
+
+@media screen and(max-width:1000px){
+    .home-wrapper{
+        .search-input-holder {
+            h2{
+                font-size:2em !important;
+            }
         }
-    }
-  }
+      }
 }
+
+@media screen and(max-width:768px){
+    .home-wrapper{
+         .search-input-holder {
+             h2{
+                    font-size:1em !important;
+                }
+            }
+          }
+        }

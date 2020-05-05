@@ -17,15 +17,7 @@ class PhotgrapherProfile extends Component {
     }
 
     componentDidMount = () => {
-        const { photographerProfileRequest, photographerLikesRequest, photographerCollectionsRequest } = this.props;
-        let userInfo = this.props.location.state.userData;
-        let username = window.location.pathname.split('/')[2];
-        this.setState({
-            userInfo
-        })
-        photographerProfileRequest({ username, per_page: 20 });
-        photographerLikesRequest({ username, per_page: 20 });
-        photographerCollectionsRequest({ username, per_page: 20 });
+        this.gettingUserData();
     }
 
     componentDidUpdate = (prevProps) => {
@@ -33,6 +25,10 @@ class PhotgrapherProfile extends Component {
             this.setState({
                 photographerProfile: this.props.photographerProfile
             })
+        }
+
+        if (prevProps.computedMatch.params !== this.props.computedMatch.params) {
+            this.gettingUserData()
         }
     }
 
@@ -52,6 +48,18 @@ class PhotgrapherProfile extends Component {
         })
     }
 
+    gettingUserData = () => {
+        const { photographerProfileRequest, photographerLikesRequest, photographerCollectionsRequest,
+            location: { state: { userData } }, computedMatch: { params: { UserName } } } = this.props;
+        let userInfo = userData;
+        let username = UserName;
+        this.setState({
+            userInfo
+        })
+        photographerProfileRequest({ username, per_page: 20 });
+        photographerLikesRequest({ username, per_page: 20 });
+        photographerCollectionsRequest({ username, per_page: 20 });
+    }
     render() {
         const { userInfo, searchTerm, photographerProfile } = this.state;
         return (

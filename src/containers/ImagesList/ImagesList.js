@@ -99,6 +99,7 @@ class ImagesList extends Component {
   }
 
   getCollectionData = (collection) => {
+    const { searchRequest } = this.props;
     const { photosPerPage } = this.state;
     Promise.resolve(
       searchRequest({ query: collection, page: 1, per_page: photosPerPage })

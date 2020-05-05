@@ -40,20 +40,17 @@ const tabsHeading = [
   {
     id: `simple-tab-0`,
     label: 'Photos',
-    icon: <PhotoCameraIcon />,
-    name: 'photos'
+    icon: <PhotoCameraIcon />
   },
   {
     id: `simple-tab-1`,
     label: 'Likes',
-    icon: <FavoriteIcon />,
-    name: 'likes'
+    icon: <FavoriteIcon />
   },
   {
     id: `simple-tab-2`,
     label: 'Collections',
-    icon: <CollectionsIcon />,
-    name: 'collections'
+    icon: <CollectionsIcon />
   }
 ]
 
@@ -69,7 +66,7 @@ const ProfileTabs = ({ photographerProfile: { photos, likes, collections } }) =>
   const panels = [
     <ImagesHolder list={photos} />,
     <ImagesHolder list={likes} />,
-    <PhotographerCollections />
+    <PhotographerCollections list={collections}/>
   ]
   const handleChange = (event, newValue) => {
     setValue(newValue);

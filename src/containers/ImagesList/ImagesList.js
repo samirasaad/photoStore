@@ -65,15 +65,16 @@ class ImagesList extends Component {
 
   componentDidUpdate = (prevProps) => {
     const { photosPerPage } = this.state;
-    const { results, total, searchRequest } = this.props;
-    //listen on params channging
-    if (prevProps.computedMatch && prevProps.computedMatch.params.searcTerm !== this.props.computedMatch.params.searcTerm) {
-      let searchTerm = this.props.computedMatch.params.searcTerm;
-      let activePage = window.location.search.split('=')[1];
+    const { results, total, searchRequest ,computedMatch:{params}, location} = this.props;
+    //listen on params change [search term || page no.]
+    if ( prevProps.computedMatch.params.searcTerm !== params.searcTerm || 
+      prevProps.location.search !== location.search) {
+      let searchTerm = params.searcTerm;
+      let activePage = location.search.split('=')[1];
       searchRequest({ query: searchTerm, page: +activePage, per_page: photosPerPage });
       this.setState({ searchTerm, activePage })
     }
-    if (prevProps.results !== this.props.results || prevProps.total !== this.props.total) {
+    if (prevProps.results !== results || prevProps.total !== total) {
       this.setState({
         searchList: results,
         total
@@ -102,7 +103,7 @@ class ImagesList extends Component {
     const { searchRequest } = this.props;
     const { photosPerPage } = this.state;
     Promise.resolve(
-      searchRequest({ query: collection, page: 1, per_page: photosPerPage })
+      // searchRequest({ query: collection, page: 1, per_page: photosPerPage })
     ).then(
       History.push(`/imagesList/${collection}?page=1`)
     )
@@ -113,7 +114,7 @@ class ImagesList extends Component {
     this.setState({ activePage: pageNumber }, () => {
       const { searchTerm, activePage, photosPerPage } = this.state;
       Promise.resolve(
-        searchRequest({ query: searchTerm, page: activePage, per_page: photosPerPage })
+        // searchRequest({ query: searchTerm, page: activePage, per_page: photosPerPage })
       ).then(History.push({
         search: `?page=${activePage}`
       }))

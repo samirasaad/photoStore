@@ -18,7 +18,16 @@ const featuredCollections =[
     'Google',
     'Youtube',
     'Pintrest',
-    'Nature'
+    'Nature', 
+    'Learn',
+    'Code',
+    'Garden',
+    'People',
+    'Languages',
+    'Desktops',
+    'Mobile',
+    'Screen',
+    'Device'
 ]
 export  {
     baseUrl,

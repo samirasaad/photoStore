@@ -64,7 +64,6 @@ class ImagesHolder extends Component {
         const { list } = this.props;
         return (
             <>
-                <section>
                     {
                         (list && list.length > 0) ?
                             <div className='row mx-0'>
@@ -107,7 +106,6 @@ class ImagesHolder extends Component {
                         imgObj={imgObj}
                         userObj={userObj}
                     />
-                </section>
             </>
         )
     }

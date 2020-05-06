@@ -125,7 +125,6 @@ class ImagesList extends Component {
   render() {
     const { searchTerm, searchList, SliderSettings, total,activePage, photosPerPage } = this.state;
     return (
-      <>
         <section className='image-list-wrapper container-fluid my-4 min-vh-100'>
           <div className='wrapper container-fluid'>
             <SimpleSlider
@@ -160,7 +159,6 @@ class ImagesList extends Component {
             </>
           }
         </section>
-      </>
     )
   }
 }

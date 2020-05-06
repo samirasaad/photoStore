@@ -30,7 +30,6 @@ class ImagesList extends Component {
               slidesToShow: 3,
               slidesToScroll: 3,
               infinite: true,
-              dots: true
             }
           },
           {
@@ -38,7 +37,6 @@ class ImagesList extends Component {
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
-              // initialSlide: 3
             }
           },
           {
@@ -65,9 +63,9 @@ class ImagesList extends Component {
 
   componentDidUpdate = (prevProps) => {
     const { photosPerPage } = this.state;
-    const { results, total, searchRequest ,computedMatch:{params}, location} = this.props;
+    const { results, total, searchRequest, computedMatch: { params }, location } = this.props;
     //listen on params change [search term || page no.]
-    if ( prevProps.computedMatch.params.searcTerm !== params.searcTerm || 
+    if (prevProps.computedMatch.params.searcTerm !== params.searcTerm ||
       prevProps.location.search !== location.search) {
       let searchTerm = params.searcTerm;
       let activePage = location.search.split('=')[1];
@@ -99,66 +97,56 @@ class ImagesList extends Component {
     searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
   }
 
-  getCollectionData = (collection) => {
-    const { searchRequest } = this.props;
-    const { photosPerPage } = this.state;
-    Promise.resolve(
-      // searchRequest({ query: collection, page: 1, per_page: photosPerPage })
-    ).then(
-      History.push(`/imagesList/${collection}?page=1`)
-    )
-  }
-
   handlePageChange = (pageNumber) => {
-    const { searchRequest } = this.props;
-    this.setState({ activePage: pageNumber }, () => {
-      const { searchTerm, activePage, photosPerPage } = this.state;
-      Promise.resolve(
-        // searchRequest({ query: searchTerm, page: activePage, per_page: photosPerPage })
-      ).then(History.push({
-        search: `?page=${activePage}`
-      }))
-    });
-
+    this.setState({ activePage: pageNumber },
+      () => {
+        const { activePage } = this.state;
+        History.push({
+          search: `?page=${activePage}`
+        })
+      })
   }
 
   render() {
-    const { searchTerm, searchList, SliderSettings, total,activePage, photosPerPage } = this.state;
+    const { searchTerm, searchList, SliderSettings, total, activePage, photosPerPage } = this.state;
     return (
-        <section className='image-list-wrapper container-fluid my-4 min-vh-100'>
-          <div className='wrapper container-fluid'>
-            <SimpleSlider
-              handleClick={this.getCollectionData}
-              list={featuredCollections}
-              SliderSettings={SliderSettings}
+      <section className='image-list-wrapper container-fluid my-4 min-vh-100'>
+        <div className='wrapper container-fluid'>
+          <SimpleSlider
+            handleClick={(collection) => History.push({
+              pathname: `/imagesList/${collection}`,
+              search: `?page=1`
+            })}
+            list={featuredCollections}
+            SliderSettings={SliderSettings}
+          />
+          <div className='pb-3 my-5'>
+            <SearchInput handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit} value={searchTerm}
             />
-            <div className='pb-3 my-5'>
-              <SearchInput handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit} value={searchTerm}
+          </div>
+        </div>
+        {
+          (searchList.length > 0 && total > 0) &&
+          <>
+            <ImagesHolder list={searchList} total={total} />
+            <div className='my-4 w-100'>
+              <Pagination
+                className='justify-content-center'
+                itemClass="page-item"
+                linkClass="page-link"
+                activePage={+activePage}
+                itemsCountPerPage={photosPerPage}
+                totalItemsCount={total}
+                pageRangeDisplayed={5}
+                onChange={this.handlePageChange}
+                prevPageText='Prev'
+                nextPageText='Next'
               />
             </div>
-          </div>
-          {
-            (searchList.length > 0 && total > 0) &&
-            <>
-              <ImagesHolder list={searchList} total={total} />
-              <div className='my-4 w-100'>
-                <Pagination
-                  className='justify-content-center'
-                  itemClass="page-item"
-                  linkClass="page-link"
-                  activePage={+activePage}
-                  itemsCountPerPage={photosPerPage}
-                  totalItemsCount={total}
-                  pageRangeDisplayed={5}
-                  onChange={this.handlePageChange}
-                  prevPageText='Prev'
-                  nextPageText='Next'
-                />
-              </div>
-            </>
-          }
-        </section>
+          </>
+        }
+      </section>
     )
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, Button, DialogActions, DialogContent, IconButton } from '@material-ui/core';
+import { Dialog, DialogActions, DialogContent, IconButton } from '@material-ui/core';
 import PinDropIcon from '@material-ui/icons/PinDrop';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import FavoriteIcon from '@material-ui/icons/Favorite';

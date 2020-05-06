@@ -1,5 +1,4 @@
 import React from 'react';
-import YoutubeSearchedForIcon from '@material-ui/icons/YoutubeSearchedFor';
 import './SearchInput.scss';
 const SearchInput = ({ handleChange,handleSubmit,value }) => {
     return (

@@ -6,11 +6,11 @@ export const axiosInstance = axios.create({
   baseURL:baseUrl,
 });
 
-// Handle request process
+// Handle request 
 axiosInstance.interceptors.request.use(
   request => requestHandler(request)
 );
-// Handle response process
+// Handle response 
 axiosInstance.interceptors.response.use(
   response => successHandler(response),
   error => errorHandler(error)

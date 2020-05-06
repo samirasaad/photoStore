@@ -3,7 +3,6 @@ import { Router } from 'react-router-dom';
 import history from '../routes/History';
 import Routes from '../routes/Routes';
 import { connect } from 'react-redux';
-import { IntlProvider } from 'react-intl';
 import Navbar from "../components/Navbar/Navbar";
 import Loader from "../components/Loader/Loader";
 import './App.scss';

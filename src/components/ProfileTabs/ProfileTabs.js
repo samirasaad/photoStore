@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -53,14 +52,7 @@ const tabsHeading = [
   }
 ]
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-}));
-
 const ProfileTabs = ({ photographerProfile: { photos, likes, collections } }) => {
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const panels = [
     <ImagesHolder list={photos} />,
@@ -72,7 +64,7 @@ const ProfileTabs = ({ photographerProfile: { photos, likes, collections } }) =>
   };
 
   return (
-    <div className='tabs-wrapper'>
+    <div className='tabs-wrapper' stlye={{minHeight: '70vh'}}>
       <AppBar position="static" className='my-4'>
         <Tabs value={value} onChange={handleChange} >
           {

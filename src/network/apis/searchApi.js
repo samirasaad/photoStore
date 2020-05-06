@@ -14,10 +14,4 @@ const searchForPhotos = async params => {
 
 export default {
     searchForPhotos
-};
-/** 
-//async.....> notify this is an asyncronous operation takes sometimes
-//await.....> wait for the response, store it in a variable called response
-
-async, await belongs to axios library to handle .then() as axios rerurns promise
-*/
+}

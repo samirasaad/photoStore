@@ -7,9 +7,8 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import ImagesHolder from '../../containers/ImagesHolder/ImagesHolder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import CollectionsIcon from '@material-ui/icons/Collections';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import PhotoIcon from '@material-ui/icons/Photo';
 import './ProfileTabs.scss';
 import PhotographerCollections from '../Collections/Collections';
 function TabPanel(props) {
@@ -40,7 +39,7 @@ const tabsHeading = [
   {
     id: `simple-tab-0`,
     label: 'Photos',
-    icon: <PhotoCameraIcon />
+    icon: <PhotoIcon />
   },
   {
     id: `simple-tab-1`,
@@ -50,7 +49,7 @@ const tabsHeading = [
   {
     id: `simple-tab-2`,
     label: 'Collections',
-    icon: <CollectionsIcon />
+    icon: <LibraryAddIcon />
   }
 ]
 

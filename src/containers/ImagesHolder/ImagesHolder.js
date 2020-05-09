@@ -57,6 +57,7 @@ class ImagesHolder extends Component {
     render() {
         const { isOpen, imgObj, userObj } = this.state;
         const { list } = this.props;
+        console.log(list)
         return (
             <>
                 {
@@ -87,15 +88,7 @@ class ImagesHolder extends Component {
                             }
                         </div>
                         :
-                        // :
-                        //     <div style={{
-                        //         backgroundImage: `url(${noDataFound})`,
-                        //         minHeight: `25em`,
-                        //         backgroundRepeat  : 'no-repeat',
-                        //         backgroundSize: `contain`,
-                        //         backgroundPosition: `center`
-                        //     }}></div>
-                        <h4 className='text-muted text-center'>There are no data :(</h4>
+                        <h4 className='text-muted text-center'>There are no photos :(</h4>
                 }
                 <ImageModal isOpen={isOpen}
                     handleModalState={this.handleModalState}

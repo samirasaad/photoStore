@@ -61,7 +61,7 @@ const PhotographerCollections = ({ list }) => {
                         </div>
                     )
                 }) :
-                <h4 className='text-muted m-auto'>There are no data :(</h4>
+                <h4 className='text-muted m-auto'>There are no photos :(</h4>
             }
         </div>
     )

@@ -127,9 +127,9 @@ class ImagesList extends Component {
           </div>
         </div>
         {
-          (searchList.length > 0 && total > 0) &&
           <>
             <ImagesHolder list={searchList} total={total} />
+           {(searchList.length > 0 && total > 0) && 
             <div className='my-4 w-100'>
               <Pagination
                 className='justify-content-center'
@@ -143,7 +143,7 @@ class ImagesList extends Component {
                 prevPageText='Prev'
                 nextPageText='Next'
               />
-            </div>
+            </div>}
           </>
         }
       </section>

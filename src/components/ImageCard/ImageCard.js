@@ -28,7 +28,7 @@ const ImageCard = (props) => {
         avatar={
           <Link
             to={{
-              pathname: `/profile/${username}`,
+              pathname: `/photo-store/profile/${username}`,
               state: { userData }
             }}
           >

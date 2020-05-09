@@ -9,8 +9,8 @@ const Routes = (
     <Router history={history}>
       <Switch>
         <LazyComponent.Home path="/photo-store" exact />
-        <LazyComponent.ImagesList path="photo-store//imagesList/:searcTerm" exact />
-        <LazyComponent.PhotgrapherProfile path="photo-store/profile/:UserName" exact />
+        <LazyComponent.ImagesList path="/photo-store/imagesList/:searcTerm" exact />
+        <LazyComponent.PhotgrapherProfile path="/photo-store/profile/:UserName" exact />
         <LazyComponent.NotFound path="*" exact />
       </Switch>
     </Router>

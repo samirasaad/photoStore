@@ -114,7 +114,7 @@ class ImagesList extends Component {
         <div className='wrapper container-fluid'>
           <SimpleSlider
             handleClick={(collection) => History.push({
-              pathname: `/imagesList/${collection}`,
+              pathname: `/photo-store/imagesList/${collection}`,
               search: `?page=1`
             })}
             list={featuredCollections}

@@ -9,16 +9,14 @@ import './App.scss';
 import Footer from '../components/Footer/Footer';
 class App extends Component {
   render() {
-    const { loading } = this.props;
+    const { loader } = this.props;
     return (
-        <div >
-        {loading ? <Loader /> : null}
-          <Router history={history}>
-            <Navbar />
-            {Routes}
-            <Footer />
-          </Router>
-        </div>
+        <Router history={history}>
+          {loader ? <Loader /> : null}
+          <Navbar />
+          {Routes}
+          <Footer />
+        </Router>
     );
   }
 }

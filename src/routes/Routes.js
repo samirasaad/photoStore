@@ -8,7 +8,7 @@ const Routes = (
   <Suspense fallback={<Loader/>}>
     <Router history={history}>
       <Switch>
-        <LazyComponent.Home path="/photo-store" exact />
+        <LazyComponent.Home path="/" exact />
         <LazyComponent.ImagesList path="/photo-store/imagesList/:searcTerm" exact />
         <LazyComponent.PhotgrapherProfile path="/photo-store/profile/:UserName" exact />
         <LazyComponent.NotFound path="*" exact />

@@ -91,7 +91,7 @@ class ImagesList extends Component {
     const { searchRequest } = this.props;
     const { activePage, photosPerPage, searchTerm } = this.state;
     History.push({
-      pathname: `/photo-store/ImagesList/${searchTerm}`,
+      pathname: `/photoStore/ImagesList/${searchTerm}`,
       search: `?page=1`
     })
     searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
@@ -114,7 +114,7 @@ class ImagesList extends Component {
         <div className='wrapper container-fluid'>
           <SimpleSlider
             handleClick={(collection) => History.push({
-              pathname: `/photo-store/imagesList/${collection}`,
+              pathname: `/photoStore/imagesList/${collection}`,
               search: `?page=1`
             })}
             list={featuredCollections}

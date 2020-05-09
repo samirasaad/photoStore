@@ -1,7 +1,7 @@
 {
   "name": "photo-store",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "http://samirasaad.github.io/photoStore",
   "dependencies": {
     "@material-ui/core": "^4.9.10",

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e6a73b045002cf466c2ec79ce04dd7ad",
+    "revision": "7cc3571cae0d441e8d7966f68991055b",
     "url": "/photo-store/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/photo-store/static/css/1.fe47cd3f.chunk.css"
   },
   {
-    "revision": "6b58e7a10e1b2c9dfcac",
+    "revision": "06370f01d921839fe81a",
     "url": "/photo-store/static/css/5.2395384e.chunk.css"
   },
   {
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/photo-store/static/css/7.5272c682.chunk.css"
   },
   {
-    "revision": "8a7618e8a31fb3033da3",
+    "revision": "5be038c27b32e7159d23",
     "url": "/photo-store/static/css/main.022ceb28.chunk.css"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/photo-store/static/js/4.3b6bb149.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6b58e7a10e1b2c9dfcac",
-    "url": "/photo-store/static/js/5.1928ced5.chunk.js"
+    "revision": "06370f01d921839fe81a",
+    "url": "/photo-store/static/js/5.01f92063.chunk.js"
   },
   {
     "revision": "0df5043d3e4828f87421",
@@ -68,12 +68,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/photo-store/static/js/9.67bd3157.chunk.js"
   },
   {
-    "revision": "8a7618e8a31fb3033da3",
-    "url": "/photo-store/static/js/main.f8e420ac.chunk.js"
+    "revision": "5be038c27b32e7159d23",
+    "url": "/photo-store/static/js/main.515077ca.chunk.js"
   },
   {
-    "revision": "6d1bdb1115450514ca67",
-    "url": "/photo-store/static/js/runtime-main.37518850.js"
+    "revision": "c4c4025dfc835fa62a3a",
+    "url": "/photo-store/static/js/runtime-main.f92fc4ea.js"
   },
   {
     "revision": "dc563b2b577a2836540b1ca94f867d5f",

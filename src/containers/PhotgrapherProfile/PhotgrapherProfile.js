@@ -43,7 +43,7 @@ class PhotgrapherProfile extends Component {
         e.preventDefault();
         const { searchTerm } = this.state;
         History.push({
-            pathname: `/ImagesList/${searchTerm}`,
+            pathname: `/photoStore/ImagesList/${searchTerm}`,
             search: `?page=1`
         })
     }

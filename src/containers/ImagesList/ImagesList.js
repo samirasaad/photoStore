@@ -8,6 +8,7 @@ import ImagesHolder from '../ImagesHolder/ImagesHolder';
 import { featuredCollections } from './../../utils/Constants';
 import './ImagesList.scss';
 import PaginationBar from '../../components/Pagination/Pagination';
+import { PushRouting } from '../../utils/shared';
 
 class ImagesList extends Component {
   constructor(props) {
@@ -90,20 +91,20 @@ class ImagesList extends Component {
     e.preventDefault();
     const { searchRequest } = this.props;
     const { activePage, photosPerPage, searchTerm } = this.state;
-    History.push({
-      pathname: `/ImagesList/${searchTerm}`,
-      search: `?page=1`
-    })
+    PushRouting(`/imagesList/${searchTerm}`,`?page=1`)
     searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
   }
 
+  getCollectionData = (collection) => {
+    PushRouting(`/imagesList/${collection}`,`?page=1`)
+  }
+
   handlePageChange = (pageNumber) => {
+    const {computedMatch:{url}} = this.props;
     this.setState({ activePage: pageNumber },
       () => {
         const { activePage } = this.state;
-        History.push({
-          search: `?page=${activePage}`
-        })
+        PushRouting( url  ,`?page=${activePage}`)
       })
   }
 
@@ -113,10 +114,7 @@ class ImagesList extends Component {
       <section className='image-list-wrapper container-fluid my-4 min-vh-100'>
         <div className='wrapper container-fluid'>
           <SimpleSlider
-            handleClick={(collection) => History.push({
-              pathname: `/imagesList/${collection}`,
-              search: `?page=1`
-            })}
+            handleClick={this.getCollectionData}
             list={featuredCollections}
             SliderSettings={SliderSettings}
           />

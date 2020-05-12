@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import History from '../../routes/History';
 import { photographerProfileRequest, photographerLikesRequest, photographerCollectionsRequest } from './../../store/actions/photographerProfile';
 import PhotogragherInfo from '../../components/PhotogragherInfo/PhotogragherInfo';
 import ProfileTabs from './../../components/ProfileTabs/ProfileTabs';
 import SearchInput from '../../components/SearchInput/SearchInput';
+import { PushRouting } from '../../utils/shared';
 
 class PhotgrapherProfile extends Component {
     constructor(props) {
@@ -42,10 +42,7 @@ class PhotgrapherProfile extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { searchTerm } = this.state;
-        History.push({
-            pathname: `/photoStore/ImagesList/${searchTerm}`,
-            search: `?page=1`
-        })
+        PushRouting( `/photoStore/ImagesList/${searchTerm}` ,`?page=1`)
     }
 
     gettingUserData = () => {

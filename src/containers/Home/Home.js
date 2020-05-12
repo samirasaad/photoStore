@@ -5,6 +5,7 @@ import SimpleSlider from './../../components/Slider/Slider';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import { searchRequest } from './../../store/actions/search';
 import { featuredCollections } from './../../utils/Constants';
+import {PushRouting} from './../../utils/shared';
 import './Home.scss'
 
 class Home extends Component {
@@ -60,15 +61,12 @@ class Home extends Component {
     Promise.resolve(
       searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
     ).then(
-      History.push({
-        pathname: `/imagesList/${searchTerm}`,
-        search: `?page=1`,
-      })
+      PushRouting(`/imagesList/${searchTerm}`,`?page=1`)
     )
   }
 
   getCollectionData = (collection) => {
-    History.push(`/imagesList/${collection}?page=1`)
+    PushRouting(`/imagesList/${collection}`,`?page=1`)
   }
 
   render() {

@@ -91,7 +91,7 @@ class ImagesList extends Component {
     const { searchRequest } = this.props;
     const { activePage, photosPerPage, searchTerm } = this.state;
     History.push({
-      pathname: `/photoStore/ImagesList/${searchTerm}`,
+      pathname: `/ImagesList/${searchTerm}`,
       search: `?page=1`
     })
     searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })

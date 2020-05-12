@@ -61,14 +61,14 @@ class Home extends Component {
       searchRequest({ query: this.state.searchTerm, page: activePage, per_page: photosPerPage })
     ).then(
       History.push({
-        pathname: `/photoStore/imagesList/${searchTerm}`,
+        pathname: `/imagesList/${searchTerm}`,
         search: `?page=1`,
       })
     )
   }
 
   getCollectionData = (collection) => {
-    History.push(`/photoStore/imagesList/${collection}?page=1`)
+    History.push(`/imagesList/${collection}?page=1`)
   }
 
   render() {

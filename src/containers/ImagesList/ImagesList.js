@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import History from './../../routes/History';
-import Pagination from "react-js-pagination";
 import { searchRequest } from '../../store/actions/search';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import SimpleSlider from './../../components/Slider/Slider';
 import ImagesHolder from '../ImagesHolder/ImagesHolder';
 import { featuredCollections } from './../../utils/Constants';
 import './ImagesList.scss';
+import PaginationBar from '../../components/Pagination/Pagination';
 
 class ImagesList extends Component {
   constructor(props) {
@@ -114,7 +114,7 @@ class ImagesList extends Component {
         <div className='wrapper container-fluid'>
           <SimpleSlider
             handleClick={(collection) => History.push({
-              pathname: `/photoStore/imagesList/${collection}`,
+              pathname: `/imagesList/${collection}`,
               search: `?page=1`
             })}
             list={featuredCollections}
@@ -129,21 +129,15 @@ class ImagesList extends Component {
         {
           <>
             <ImagesHolder list={searchList} total={total} />
-           {(searchList.length > 0 && total > 0) && 
-            <div className='my-4 w-100'>
-              <Pagination
-                className='justify-content-center'
-                itemClass="page-item"
-                linkClass="page-link"
-                activePage={+activePage}
-                itemsCountPerPage={photosPerPage}
-                totalItemsCount={total}
-                pageRangeDisplayed={5}
-                onChange={this.handlePageChange}
-                prevPageText='Prev'
-                nextPageText='Next'
-              />
-            </div>}
+            {(searchList.length > 0 && total > 0) &&
+              <div className='my-4 w-100'>
+                <PaginationBar
+                  activePage={+activePage}
+                  photosPerPage={photosPerPage}
+                  total={total}
+                  handlePageChange={this.handlePageChange}
+                />
+              </div>}
           </>
         }
       </section>

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f7ea47ccf3d53af14d096ff6024ebd8b",
+    "revision": "e72821ca8ec0b86708d4bfb59f57f3a4",
     "url": "/photoStore/index.html"
   },
   {
@@ -8,11 +8,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/photoStore/static/css/1.46c1e978.chunk.css"
   },
   {
-    "revision": "59af6be29d180133ea8c",
+    "revision": "10ed2cb041c9db92b2df",
     "url": "/photoStore/static/css/5.2395384e.chunk.css"
   },
   {
-    "revision": "3e2108bebc4fac7cf653",
+    "revision": "ed2349a523fe5ed1e715",
     "url": "/photoStore/static/css/6.9f404b6f.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/photoStore/static/css/7.7c9ba632.chunk.css"
   },
   {
-    "revision": "867d75cc19cdc5ea53f8",
-    "url": "/photoStore/static/css/main.d2cb6882.chunk.css"
+    "revision": "0c3f7a3ea2296332382e",
+    "url": "/photoStore/static/css/main.485ad609.chunk.css"
   },
   {
     "revision": "66bc713aab2f19cdc57a",
@@ -44,12 +44,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/photoStore/static/js/4.3b6bb149.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "59af6be29d180133ea8c",
-    "url": "/photoStore/static/js/5.ba5c116d.chunk.js"
+    "revision": "10ed2cb041c9db92b2df",
+    "url": "/photoStore/static/js/5.f93fc699.chunk.js"
   },
   {
-    "revision": "3e2108bebc4fac7cf653",
-    "url": "/photoStore/static/js/6.414382d5.chunk.js"
+    "revision": "ed2349a523fe5ed1e715",
+    "url": "/photoStore/static/js/6.b41e949d.chunk.js"
   },
   {
     "revision": "87681ac01028fd23fbe3",
@@ -68,12 +68,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/photoStore/static/js/9.08fdde0a.chunk.js"
   },
   {
-    "revision": "867d75cc19cdc5ea53f8",
-    "url": "/photoStore/static/js/main.e8b3be6f.chunk.js"
+    "revision": "0c3f7a3ea2296332382e",
+    "url": "/photoStore/static/js/main.4705c5c0.chunk.js"
   },
   {
-    "revision": "59a17f4e324989ca8a30",
-    "url": "/photoStore/static/js/runtime-main.0ed8e77c.js"
+    "revision": "8bf9fe96fb8005c31489",
+    "url": "/photoStore/static/js/runtime-main.615c8fb5.js"
   },
   {
     "revision": "dc563b2b577a2836540b1ca94f867d5f",

@@ -57,7 +57,6 @@ class ImagesHolder extends Component {
     render() {
         const { isOpen, imgObj, userObj } = this.state;
         const { list } = this.props;
-        console.log(list)
         return (
             <>
                 {

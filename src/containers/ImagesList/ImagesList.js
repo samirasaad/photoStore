@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import History from './../../routes/History';
 import { searchRequest } from '../../store/actions/search';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import SimpleSlider from './../../components/Slider/Slider';
 import ImagesHolder from '../ImagesHolder/ImagesHolder';
 import { featuredCollections } from './../../utils/Constants';
-import './ImagesList.scss';
 import PaginationBar from '../../components/Pagination/Pagination';
 import { PushRouting } from '../../utils/shared';
+import './ImagesList.scss';
 
 class ImagesList extends Component {
   constructor(props) {

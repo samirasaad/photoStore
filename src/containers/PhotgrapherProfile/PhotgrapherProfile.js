@@ -42,7 +42,7 @@ class PhotgrapherProfile extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { searchTerm } = this.state;
-        PushRouting( `/photoStore/ImagesList/${searchTerm}` ,`?page=1`)
+        PushRouting( `/ImagesList/${searchTerm}` ,`?page=1`)
     }
 
     gettingUserData = () => {

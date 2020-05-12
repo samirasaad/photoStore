@@ -8,8 +8,8 @@ import store from './../../store';
 let acess_key = 'PtJVadUoerKJguf5WxlQwRRevCUQPFuW-d5la9CKq_0';
 
 export const requestHandler = request => {
-  console.log(request);
   if (isHandlerEnabled(request)) {
+     document.getElementById('root').classList.add("loading-indicator");
      store.dispatch(loader(true));
      request.headers["Authorization"] = `Client-ID ${acess_key}`
   }
@@ -18,6 +18,7 @@ export const requestHandler = request => {
 
 export const successHandler = response => {
   if (isHandlerEnabled(response)) {
+    document.getElementById('root').classList.remove("loading-indicator");
     store.dispatch(loader(false));
   }
   return response;
@@ -25,7 +26,7 @@ export const successHandler = response => {
 
 export const errorHandler = error => {
   if (isHandlerEnabled(error.config)) {
-    console.log(error);
+    document.getElementById('root').classList.remove("loading-indicator");
     store.dispatch(loader(false));
   }
   return Promise.reject({ ...error });

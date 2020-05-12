@@ -1,5 +1,9 @@
 const baseUrl = 'https://api.unsplash.com';
 const featuredCollections =[
+    'Technology',
+    'Animals',
+    'Wallpapers',
+    'Patterns',
     'Whatsapp',
     'Love',
     'Flowers',

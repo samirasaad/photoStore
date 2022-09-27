@@ -1,58 +1,56 @@
-@import '../../scss/variables';
-.home-wrapper{
-    height: 90vh;
-    background-image: url('./../../assets/images/homeHeader.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    filter:grayscale(0.4);
-     .search-input-holder {
-        width: 100%;
-        position: absolute;
-       h2{
-           font-size:3em;
-       }
+@import "../../scss/variables";
+.home-wrapper {
+  height: 90vh;
+  background-image: url("./../../assets/images/homeHeader.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(0.4);
+  .search-input-holder {
+    width: 100%;
+    position: absolute;
+    h2 {
+      font-size: 3em;
     }
-    .wrapper{
-        min-height:100px;
-        .slick-track{
-         margin-top:10px
-        }
-        .slick-slide > div{
-            text-align: center;
-            border-radius: 12px;
-            border: 1px solid black;
-            margin: 0 4px 0 6px;
-            white-space: nowrap;
-            overflow: hidden;
-            padding: 8px;
-            text-transform: lowercase;
-            cursor: pointer;
-          &:hover{
-            box-shadow: 0px 3px 15px 0px #698179;
-            border: none;
-          }
-       }
-    }    
-}
-
-
-
-@media screen and(max-width:1000px){
-    .home-wrapper{
-        .search-input-holder {
-            h2{
-                font-size:2em !important;
-            }
-        }
+  }
+  .wrapper {
+    min-height: 100px;
+    .slick-track {
+      margin-top: 10px;
+    }
+    .slick-slide > div {
+      text-align: center;
+      border-radius: 12px;
+      border: 1px solid black;
+      margin: 0 4px 0 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 8px;
+      text-transform: lowercase;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 0px 3px 15px 0px #698179;
+        border: none;
       }
+    }
+  }
 }
 
-@media screen and(max-width:768px){
-    .home-wrapper{
-         .search-input-holder {
-             h2{
-                    font-size:1em !important;
-                }
-            }
-          }
-        }
+@media screen and (max-width: 1000px) {
+  .home-wrapper {
+    .search-input-holder {
+      h2 {
+        font-size: 2em !important;
+      }
+    }
+  }
+}
+
+@media screen and(max-width:768px) {
+  .home-wrapper {
+    .search-input-holder {
+      h2 {
+        font-size: 1em !important;
+      }
+    }
+  }
+}
